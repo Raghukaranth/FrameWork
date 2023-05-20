@@ -46,17 +46,17 @@ public class FilterPage extends Page {
 
     public ResultPage selectFilterForSizeAndClickApply() throws IOException, ParseException {
         Assert.assertTrue(webInteraction.waitForElementToAppearAndClick(list_selectSize));
-        webInteraction.waitForPageToLoad();
+        waitForPageToLoad();
         webInteraction.jsClickCheckBox(chkbox_size);
-        webInteraction.waitForElementToAppearAndClick(btn_apply);
+        Assert.assertTrue(webInteraction.waitForElementToAppearAndClick(btn_apply));
         return new ResultPage();
     }
 
     public ResultPage selectFilterForPriceAndClickApply() throws IOException, ParseException {
-        webInteraction.waitForPageToLoad();
+        waitForPageToLoad();
         webInteraction.scrollTillElement(list_price);
         webInteraction.waitForElementToAppearAndClick(list_price);
-        webInteraction.waitForPageToLoad();
+        waitForPageToLoad();
         webInteraction.arrowUpActions();
         webInteraction.enterText(txt_min, Constants.amount1);
         webInteraction.enterText(txt_max, Constants.amount2);
@@ -65,10 +65,10 @@ public class FilterPage extends Page {
     }
 
     public ResultPage selectFilterForLocationAndClickApply() throws IOException, ParseException {
-        webInteraction.waitForPageToLoad();
+        waitForPageToLoad();
         webInteraction.scrollTillElement(list_location);
         webInteraction.waitForElementToAppearAndClick(list_location);
-        webInteraction.waitForPageToLoad();
+        waitForPageToLoad();
         webInteraction.arrowUpActions();
         webInteraction.jsClickCheckBox(radio_Us_Only);
         Assert.assertTrue(webInteraction.waitForElementToAppearAndClick(btn_apply));
