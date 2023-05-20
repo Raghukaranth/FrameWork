@@ -23,5 +23,5 @@ This is Automation Framework For web
 
 ## Running Tests <div id = "running-scripts"/>
 
-1. clone the project from GitHub
+1. clone the project from GitHub to intelij
 2. find test scripts under src/test/java/tests and execute
