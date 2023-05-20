@@ -10,7 +10,7 @@ import java.io.IOException;
 public class HomePage extends Page {
 
     @FindBy(id = "gh-cat")
-    private WebElement drpdown_select_Category;
+    private WebElement drpdwn_select_Category;
 
     @FindBy(id = "gh-btn")
     private WebElement btn_search;
@@ -25,7 +25,7 @@ public class HomePage extends Page {
     }
 
     public HomePage selectPhoneAndAccessoriesCategory() throws InterruptedException {
-        webInteraction.selectInteractionsByValue(drpdown_select_Category, Constants.CELLPHONE_ACCESSORIES);
+        webInteraction.selectInteractionsByValue(drpdwn_select_Category, Constants.CELLPHONE_ACCESSORIES);
         return this;
     }
 
@@ -35,7 +35,7 @@ public class HomePage extends Page {
     }
 
     public HomePage selectComputerTabsAndNetworkCategory() throws InterruptedException {
-        webInteraction.selectInteractionsByValue(drpdown_select_Category, Constants.COMPUTER_TAB_AND_NETWORKS);
+        webInteraction.selectInteractionsByValue(drpdwn_select_Category, Constants.COMPUTER_TAB_AND_NETWORKS);
         return this;
     }
 }

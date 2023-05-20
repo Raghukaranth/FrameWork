@@ -25,7 +25,7 @@ public class CategoryPage extends Page {
     private WebElement list_validateLocation;
 
     @FindBy(xpath = "//div[text()='MacBooks']")
-    private WebElement sel_MacBook;
+    private WebElement lnk_MacBook;
 
     public CategoryPage() throws IOException, ParseException {
     }
@@ -47,12 +47,12 @@ public class CategoryPage extends Page {
     }
 
     public CategoryPage scrollToMacBook() {
-        webInteraction.scrollTillElement(sel_MacBook);
+        webInteraction.scrollTillElement(lnk_MacBook);
         return this;
     }
 
     public CategoryPage validateMacBook() {
-        Assert.assertTrue(webInteraction.waitForElementToAppear(sel_MacBook));
+        Assert.assertTrue(webInteraction.waitForElementToAppear(lnk_MacBook));
         return this;
     }
 }
