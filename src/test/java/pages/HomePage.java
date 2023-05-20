@@ -12,6 +12,9 @@ public class HomePage extends Page {
     @FindBy(id = "gh-cat")
     private WebElement drpdwn_select_Category;
 
+    @FindBy(id = "gh-ac")
+    private WebElement txt_search;
+
     @FindBy(id = "gh-btn")
     private WebElement btn_search;
 
@@ -29,6 +32,10 @@ public class HomePage extends Page {
         return this;
     }
 
+    public HomePage enterMacBookInSearchBar(String value) {
+        webInteraction.enterText(txt_search, value);
+        return this;
+    }
     public CategoryPage clickOnSearchButton() throws IOException, ParseException, InterruptedException {
         webInteraction.waitForElementToAppearAndClick(btn_search);
         return new CategoryPage();

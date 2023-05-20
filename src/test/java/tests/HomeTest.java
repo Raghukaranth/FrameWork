@@ -27,6 +27,7 @@ public class HomeTest extends BaseTest {
     public void searchMacBook() throws IOException, ParseException, InterruptedException {
         HomePage homePage = new HomePage();
         homePage.selectComputerTabsAndNetworkCategory()
+                .enterMacBookInSearchBar("MacBook")
                 .clickOnSearchButton()
                 .scrollToMacBook()
                 .validateMacBook();

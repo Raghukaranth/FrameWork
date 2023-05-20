@@ -24,7 +24,7 @@ public class CategoryPage extends Page {
     @FindBy(xpath = "//span[contains(text(),'Item Location')]")
     private WebElement list_validateLocation;
 
-    @FindBy(xpath = "//div[text()='MacBooks']")
+    @FindBy(xpath = "//span[@class='BOLD' and text()='MacBook']")
     private WebElement lnk_MacBook;
 
     public CategoryPage() throws IOException, ParseException {
