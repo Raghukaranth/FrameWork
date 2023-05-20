@@ -46,13 +46,6 @@ public class CategoryPage extends Page {
         return new FilterPage();
     }
 
-    public CategoryPage validateResults() throws InterruptedException {
-        webInteraction.waitForElementToAppearAndClick(btn_filterApplied);
-        Assert.assertTrue(webInteraction.waitForElementToAppear(list_validatePrice));
-        Assert.assertTrue(webInteraction.waitForElementToAppear(list_validateLocation));
-        return this;
-    }
-
     public CategoryPage scrollToMacBook() {
         webInteraction.scrollTillElement(sel_MacBook);
         return this;
