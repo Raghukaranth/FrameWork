@@ -1,7 +1,7 @@
 package base;
 
 import configuration.ConfigProperty;
-import driverManager.AppiumDriverManager;
+import driverManager.DriverManager;
 import interactions.MobileInteraction;
 import interactions.WebInteraction;
 import io.appium.java_client.AppiumDriver;
@@ -22,11 +22,11 @@ public class  BaseUtils {
     protected WebInteraction webInteraction;
     protected MobileInteraction mobileInteraction;
 
-    @FindBy(id = "gh-logo")
+    @FindBy(xpath = "//img[@alt='Google']")
     public WebElement img_logo;
 
     public BaseUtils() throws IOException, ParseException {
-       appiumDriver = AppiumDriverManager.getAppiumDriver();
+       appiumDriver = DriverManager.getAppiumDriver();
        util.setData();
        if(ConfigProperty.PLATFORM.equalsIgnoreCase("Android")) {
            PageFactory.initElements(new AppiumFieldDecorator(appiumDriver), this);
@@ -36,8 +36,5 @@ public class  BaseUtils {
            PageFactory.initElements(webDriver, this);
            webInteraction = new WebInteraction(this.webDriver);
        }
-    }
-    public static void initializeServer() {
-        serverConfig.startServer();
     }
 }

@@ -1,0 +1,17 @@
+<configuration debug="true">
+    <statusListener class="ch.qos.logback.core.status.NopStatusListener"/>
+    <conversionRule conversionWord="highlightex" converterClass="utils.logger.HighlightingCompositeConverter"/>
+    <appender name = "colorAppender" class ="ch.qos.logback.core.status.ConsoleAppender">
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>
+                %d{dd MMM yyyy;HH:mm:ss} [%thread] %-5level %logger{30} - %msg%n
+            </pattern>
+        </encoder>
+    </appender>
+    <appender name="ExtentReport" class="utils.logger.ExtentLogAppender"/>
+    <root level="DEBUG">
+        <appender-ref ref="colorAppender"/>
+        <appender-ref ref="ExtentReport"/>
+    </root>
+    <logger name = "org.testng" level = "WARN"/>
+</configuration>

@@ -1,15 +1,13 @@
 package interactions;
 
+import constant.Constants;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.time.Duration;
 import java.util.concurrent.TimeUnit;
-
-import static sun.security.ssl.SSLLogger.info;
 
 public class WebInteraction implements Constants {
     WebDriver webDriver;
@@ -89,5 +87,30 @@ public class WebInteraction implements Constants {
     public void arrowUpActions() {
         Actions act = new Actions(webDriver);
         act.sendKeys(Keys.ARROW_UP,Keys.ARROW_UP).perform();
+    }
+
+    public boolean clickActions(WebElement element) {
+        Actions act = new Actions(webDriver);
+        try {
+            WebDriverWait wait = new WebDriverWait(webDriver, TIMEOUT_LONG);
+            wait.until(ExpectedConditions.visibilityOf(element));
+            element.click();
+            return true;
+        } catch (Exception e) { return false; }
+    }
+
+    public void actionsForFrames(WebElement element) {
+        WebDriverWait wait = new WebDriverWait(webDriver, TIMEOUT_LONG);
+        wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(element));
+    }
+
+    public void actionsForFrames(int index) {
+        WebDriverWait wait = new WebDriverWait(webDriver, TIMEOUT_LONG);
+        wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(index));
+    }
+
+    public void actionsForFrames(String name) {
+        WebDriverWait wait = new WebDriverWait(webDriver, TIMEOUT_LONG);
+        wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(name));
     }
 }

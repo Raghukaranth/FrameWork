@@ -1,14 +1,14 @@
 package base;
 
+import browser.BrowserManager;
 import capablities.BuildCaps;
 import configuration.ConfigProperty;
+import driverManager.DriverManager;
 import interactions.MobileInteraction;
 import interactions.WebInteraction;
 import io.appium.java_client.AppiumDriver;
-import io.github.bonigarcia.wdm.WebDriverManager;
 import org.json.simple.parser.ParseException;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
@@ -21,17 +21,16 @@ public class BaseTest {
     public static WebDriver webDriver;
     public static AppiumDriver appiumDriver;
     public static ThreadLocal<String> deviceId = new ThreadLocal<>();
+    protected static ThreadLocal<WebDriver> threadLocalDriver = new ThreadLocal<>();
+
     ConfigProperty util = new ConfigProperty();
     BuildCaps caps = new BuildCaps();
-    MobileInteraction mobileInteraction = new MobileInteraction(appiumDriver);
-    WebInteraction webInteraction = new WebInteraction(webDriver);
 
     @BeforeSuite
     public void BeforeSuite() throws IOException, ParseException {
         util.setData();
         if(ConfigProperty.PLATFORM.equalsIgnoreCase("Android"));
             serverConfig.startServer();
-
     }
 
     @BeforeMethod
@@ -39,15 +38,14 @@ public class BaseTest {
         util.setData();
         if(ConfigProperty.PLATFORM.equalsIgnoreCase("Android")) {
             caps.buildCaps();
-            caps.buildURL();
+            DriverManager.setAppiumDriver(appiumDriver);
+
         } else {
-            WebDriverManager.chromedriver().setup();
-            webDriver = new ChromeDriver();
-            webDriver.get("https://www.ebay.com/");
-            webDriver.manage().window().maximize();
+            webDriver = BrowserManager.BrowserSetUp("chrome");
+            DriverManager.setWebDriver(webDriver);
+            DriverManager.getWebDriver().get(ConfigProperty.URL);
         }
     }
-
 
     @AfterSuite
     public void AfterSuite() throws IOException, ParseException {
