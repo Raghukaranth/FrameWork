@@ -1,6 +1,6 @@
 package pages;
 
-import interactions.Constants;
+import constant.Constants;
 import org.json.simple.parser.ParseException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;

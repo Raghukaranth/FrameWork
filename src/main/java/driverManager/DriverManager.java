@@ -3,14 +3,17 @@ package driverManager;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.service.local.AppiumDriverLocalService;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 
-public class AppiumDriverManager {
+public class DriverManager {
 
     private static ThreadLocal<AppiumDriver> appiumDriverThreadLocal = new ThreadLocal<>();
+    private static ThreadLocal<WebDriver> webDriverThreadLocal = new ThreadLocal<>();
 
     public static AppiumDriver getAppiumDriver() {
         return appiumDriverThreadLocal.get();
+    }
+    public static WebDriver getWebDriver() {
+        return webDriverThreadLocal.get();
     }
 
     private static AppiumDriverLocalService appiumDriverLocalService;
@@ -19,7 +22,9 @@ public class AppiumDriverManager {
         return appiumDriverLocalService;
     }
 
-    public void setAppiumDriverLocalService(AppiumDriverLocalService appiumDriverLocalService) {
-        this.appiumDriverLocalService = appiumDriverLocalService;
+    public static void setAppiumDriver(AppiumDriver appiumDriver) {
+        appiumDriverThreadLocal.set(appiumDriver);
+        getAppiumDriverLocalService().getUrl();
     }
+    public static void setWebDriver(WebDriver webDriver) { webDriverThreadLocal.set(webDriver);}
 }

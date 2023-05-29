@@ -32,4 +32,11 @@ public class HomeTest extends BaseTest {
                 .scrollToMacBook()
                 .validateMacBook();
     }
+
+    @Test
+    public void TestFrames() throws IOException, ParseException {
+        HomePage homePage = new HomePage();
+        homePage.clickOnApp()
+                .clickOnYouTube();
+    }
 }
