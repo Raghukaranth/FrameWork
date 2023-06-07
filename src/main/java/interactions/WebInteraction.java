@@ -7,6 +7,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 
 public class WebInteraction implements Constants {
@@ -22,7 +23,7 @@ public class WebInteraction implements Constants {
         boolean result;
         try{
             webDriver.manage().timeouts().implicitlyWait(timeOutInSeconds, TimeUnit.SECONDS);
-            WebDriverWait wait = new WebDriverWait(webDriver, Constants.TIMEOUT_LONG);
+            WebDriverWait wait = new WebDriverWait(webDriver, TIMEOUT_LONG);
             wait.until(ExpectedConditions.visibilityOf(element));
             result = true;
         } catch(Exception e) { return false; }

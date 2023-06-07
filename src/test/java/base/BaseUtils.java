@@ -5,6 +5,7 @@ import driverManager.DriverManager;
 import interactions.MobileInteraction;
 import interactions.WebInteraction;
 import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import org.json.simple.parser.ParseException;
 import org.openqa.selenium.WebDriver;
@@ -15,6 +16,8 @@ import serverConfiguration.serverConfig;
 
 import java.io.IOException;
 
+import static base.BaseTest.*;
+
 public class  BaseUtils {
     public AppiumDriver appiumDriver;
     public WebDriver webDriver = BaseTest.webDriver;
@@ -22,15 +25,13 @@ public class  BaseUtils {
     protected WebInteraction webInteraction;
     protected MobileInteraction mobileInteraction;
 
-    @FindBy(xpath = "//img[@alt='Google']")
-    public WebElement img_logo;
 
     public BaseUtils() throws IOException, ParseException {
        appiumDriver = DriverManager.getAppiumDriver();
        util.setData();
        if(ConfigProperty.PLATFORM.equalsIgnoreCase("Android")) {
            PageFactory.initElements(new AppiumFieldDecorator(appiumDriver), this);
-           mobileInteraction = new MobileInteraction(this.appiumDriver);
+           mobileInteraction = new MobileInteraction(appiumDriver);
        }
        else {
            PageFactory.initElements(webDriver, this);
