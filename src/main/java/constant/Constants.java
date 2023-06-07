@@ -10,4 +10,6 @@ public interface Constants {
 
     String amount1 = "18";
     String amount2 = "20";
+
+    String Restaurant = "meghana";
 }
