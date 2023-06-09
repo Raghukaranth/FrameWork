@@ -12,6 +12,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
+import static utils.file.FilePath.CONFIG_PROPS;
+
 public class ConfigProperty {
     public static String URL;
     public static  String PLATFORM;
@@ -30,12 +32,13 @@ public class ConfigProperty {
     public ConfigProperty() { }
     public String getData(String value) throws IOException, ParseException {
         JSONParser parser = new JSONParser();
-        obj = parser.parse(new FileReader("./src/test/resources/config.json"));
+        obj = parser.parse(new FileReader(CONFIG_PROPS));
         json = (JSONObject) obj;
         return (String) json.get(value);
     }
 
     public void setData() throws IOException, ParseException {
+        URL = new ConfigProperty().getData("url");
         PLATFORM = new ConfigProperty().getData("platform");
         BROWSER = new ConfigProperty().getData("browser");
         URL = new ConfigProperty().getData("url");

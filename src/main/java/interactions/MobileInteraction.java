@@ -1,11 +1,10 @@
 package interactions;
 
 import constant.Constants;
-import driverManager.DriverManager;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.PerformsTouchActions;
 import io.appium.java_client.TouchAction;
-import io.appium.java_client.android.AndroidDriver;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -18,23 +17,32 @@ import static java.time.Duration.ofSeconds;
 
 public class MobileInteraction implements Constants {
 
-    public AppiumDriver appiumDriver;
+    AppiumDriver appiumDriver;
 
     public MobileInteraction(AppiumDriver appiumDriver) {
         this.appiumDriver = appiumDriver;
     }
+
     public void waitForPageToLoad() { appiumDriver.manage().timeouts().implicitlyWait(TIMEOUT_LONG, TimeUnit.SECONDS); }
 
     public boolean waitForElementToAppear(WebElement element, String elemDetails, long timeOutInSeconds) {
         boolean result;
         try{
+
             appiumDriver.manage().timeouts().implicitlyWait(timeOutInSeconds, TimeUnit.SECONDS);
             WebDriverWait wait = new WebDriverWait(appiumDriver, TIMEOUT_LONG);
             wait.until(ExpectedConditions.visibilityOf(element));
             result = true;
-        } catch(Exception e) { return false; }
-        finally{ appiumDriver.manage().timeouts().implicitlyWait(timeOutInSeconds,TimeUnit.SECONDS); }
-        return result;
+            System.out.println("try");
+        } catch(Exception e) {
+            System.out.println("catch");
+            return false;
+        }
+        finally{
+            appiumDriver.manage().timeouts().implicitlyWait(timeOutInSeconds,TimeUnit.SECONDS);
+            System.out.println("finally");
+        }
+          return result;
     }
 
     public boolean waitForElementToAppear(WebElement element) {
@@ -46,6 +54,7 @@ public class MobileInteraction implements Constants {
     }
 
     public void enterText(WebElement element, String value) {
+        waitForElementToAppearAndClick(element);
         element.sendKeys(value);
     }
 
@@ -70,7 +79,7 @@ public class MobileInteraction implements Constants {
         } catch (Exception e) {
             result = false;
         } finally {
-            appiumDriver.manage().timeouts().implicitlyWait(Constants.TIMEOUT_LONG, TimeUnit.SECONDS);
+            appiumDriver.manage().timeouts().implicitlyWait(TIMEOUT_LONG, TimeUnit.SECONDS);
         }
         return result;
     }
