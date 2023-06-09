@@ -6,7 +6,7 @@
     </listeners>
     <test verbose="2" name="FrameWork">
         <classes>
-            <class name="tests.HomeTest">
+            <class name="tests.HomeTestZomato">
                 <methods>
                     <include name="TestFrames"/>
                 </methods>

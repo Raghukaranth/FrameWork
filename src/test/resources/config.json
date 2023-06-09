@@ -1,5 +1,5 @@
 {
-  "platform": "Android",
+  "platform": "web",
   "retryCount": "0",
   "url": "https://www.google.com",
   "packageName":"tests",
