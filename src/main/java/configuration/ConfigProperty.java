@@ -19,6 +19,11 @@ public class ConfigProperty {
     public static  String PLATFORM;
     public static String SUITE_NAME;
     public static String BROWSER;
+    public static String PLATFORM_VERSION;
+    public static String APP_PACKAGE;
+    public static String APP_ACTIVITY;
+    public static String NO_RESET;
+    public static String UDID;
     private static Properties properties = new Properties();
     public static Map<String, String> configFileMap = new HashMap();
     Object obj;
@@ -42,6 +47,12 @@ public class ConfigProperty {
         PLATFORM = new ConfigProperty().getData("platform");
         BROWSER = new ConfigProperty().getData("browser");
         URL = new ConfigProperty().getData("url");
+
+        PLATFORM_VERSION =  new ConfigProperty().getData("platform_version");
+        APP_PACKAGE = new ConfigProperty().getData("app_package");
+        APP_ACTIVITY = new ConfigProperty().getData("app_activity");
+        NO_RESET = new ConfigProperty().getData("no_reset");
+        UDID = new ConfigProperty().getData("udid");
     }
 
     public static ConfigProperty getInstance(String configFile) throws IOException {

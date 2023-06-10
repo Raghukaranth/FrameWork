@@ -4,7 +4,7 @@ import org.json.simple.parser.ParseException;
 import org.junit.Assert;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import pages.Page;
+import base.Page;
 
 import java.io.IOException;
 

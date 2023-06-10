@@ -23,5 +23,6 @@ This is Automation Framework For web
 
 ## Running Tests <div id = "running-scripts"/>
 
-1. clone the project from GitHub to intelij
-2. find test scripts under src/test/java/tests and execute
+1. clone the project from GitHub
+2. find config.json file under src/test/resources change platform to which aplication to be executed if you need to execute for web change platform to "web" if not change to "Android"
+3. find test scripts under src/test/java/tests and execute
