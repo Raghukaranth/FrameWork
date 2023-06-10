@@ -17,7 +17,6 @@ public class WebInteraction implements Constants {
     public WebInteraction(WebDriver webDriver) {
         this.webDriver = webDriver;
     }
-    public void waitForPageToLoad() { webDriver.manage().timeouts().implicitlyWait(TIMEOUT_LONG, TimeUnit.SECONDS); }
 
     public boolean waitForElementToAppear(WebElement element, String elemDetails, long timeOutInSeconds) {
         boolean result;

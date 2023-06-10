@@ -1,7 +1,13 @@
 {
-  "platform": "web",
+  "platform": "",
+  "url": "",
+  "platform_version": "",
+  "app_package": "com.application.zomato",
+  "app_activity": ".activities.Splash",
+  "no_reset": "true",
+  "udid": "",
+
   "retryCount": "0",
-  "url": "https://www.google.com",
   "packageName":"tests",
   "classes":"all",
   "includedTestGroups": "",

@@ -3,7 +3,7 @@ package pages.zomato;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import org.json.simple.parser.ParseException;
 import org.openqa.selenium.WebElement;
-import pages.Page;
+import base.Page;
 
 import java.io.IOException;
 import java.util.List;

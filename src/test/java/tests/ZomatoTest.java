@@ -7,7 +7,7 @@ import pages.zomato.HomePageZomato;
 
 import java.io.IOException;
 
-public class HomeTestZomato extends BaseTest {
+public class ZomatoTest extends BaseTest {
     @Test
     public void bookFoodZomato() throws IOException, ParseException {
         HomePageZomato homePageZomato = new HomePageZomato();

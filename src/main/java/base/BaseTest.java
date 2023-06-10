@@ -19,7 +19,6 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
-import pages.Page;
 import utils.file.FilePath;
 
 import java.io.File;
@@ -59,7 +58,6 @@ public class BaseTest {
         else {
             webDriver = BrowserManager.BrowserSetUp("chrome");
             DriverManager.setWebDriver(webDriver);
-
             DriverManager.getWebDriver().get(ConfigProperty.URL);
         }
 
@@ -113,11 +111,11 @@ public class BaseTest {
         DesiredCapabilities desiredCaps = new DesiredCapabilities();
         if(ConfigProperty.PLATFORM.equalsIgnoreCase("Android")) {
             desiredCaps.setCapability("platform", platform);
-            desiredCaps.setCapability(MobileCapabilityType.PLATFORM_VERSION, "12");
-            desiredCaps.setCapability(MobileCapabilityType.UDID, "d6e1e45f");
-            desiredCaps.setCapability(MobileCapabilityType.NO_RESET, "true");
-            desiredCaps.setCapability("appPackage", "com.application.zomato");
-            desiredCaps.setCapability("appActivity", ".activities.Splash");
+            desiredCaps.setCapability(MobileCapabilityType.PLATFORM_VERSION, ConfigProperty.PLATFORM_VERSION);
+            desiredCaps.setCapability(MobileCapabilityType.UDID, ConfigProperty.UDID);
+            desiredCaps.setCapability(MobileCapabilityType.NO_RESET, ConfigProperty.NO_RESET);
+            desiredCaps.setCapability("appPackage", ConfigProperty.APP_PACKAGE);
+            desiredCaps.setCapability("appActivity", ConfigProperty.APP_ACTIVITY);
         }
         return desiredCaps;
     }
