@@ -1,10 +1,12 @@
 package configuration;
 
+import org.apache.commons.collections4.functors.ExceptionPredicate;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Enumeration;
@@ -29,20 +31,28 @@ public class ConfigProperty {
     Object obj;
     JSONObject json;
 
-    private ConfigProperty(String configFile) throws IOException {
-        FileInputStream inputStream = new FileInputStream(configFile);
-        properties.load(inputStream);
+    private ConfigProperty(String configFile)  {
+        try {
+            FileInputStream inputStream = new FileInputStream(configFile);
+            properties.load(inputStream);
+        } catch(Exception e) { e.printStackTrace(); }
     }
 
     public ConfigProperty() { }
-    public String getData(String value) throws IOException, ParseException {
+    public String getData(String value) {
         JSONParser parser = new JSONParser();
-        obj = parser.parse(new FileReader(CONFIG_PROPS));
+        try {
+            obj = parser.parse(new FileReader(CONFIG_PROPS));
+        } catch (ParseException | FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
         json = (JSONObject) obj;
         return (String) json.get(value);
     }
 
-    public void setData() throws IOException, ParseException {
+    public void setData() {
         URL = new ConfigProperty().getData("url");
         PLATFORM = new ConfigProperty().getData("platform");
         BROWSER = new ConfigProperty().getData("browser");
@@ -55,7 +65,7 @@ public class ConfigProperty {
         UDID = new ConfigProperty().getData("udid");
     }
 
-    public static ConfigProperty getInstance(String configFile) throws IOException {
+    public static ConfigProperty getInstance(String configFile)  {
         ConfigProperty instance = null;
 
         if (instance == null) {

@@ -1,4 +1,4 @@
-package database;
+package browser;
 
 import com.mysql.jdbc.Driver;
 

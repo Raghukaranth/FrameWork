@@ -7,7 +7,7 @@ import java.util.Arrays;
 
 public class Base {
     @Test
-    public static void mainTest() throws Exception {
+    public static void mainTest()  {
         TestRunner testRunner = new TestRunner();
         testRunner.runTest(Arrays.asList("./testng.xml"));
     }

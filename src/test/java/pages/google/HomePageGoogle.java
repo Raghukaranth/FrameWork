@@ -18,9 +18,6 @@ public class HomePageGoogle extends Page {
     @FindBy(xpath = "//iframe[@name='app']")
     private WebElement frame_apps;
 
-    public HomePageGoogle() throws IOException, ParseException {
-        super();
-    }
 
     public HomePageGoogle clickOnApps() {
         webInteraction.waitForElementToAppearAndClick(btn_googleApps);

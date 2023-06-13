@@ -23,11 +23,6 @@ public class HomePageZomato extends Page {
     @AndroidFindBy(id = "edittext")
     public WebElement txt_searchRestaurant;
 
-    public HomePageZomato() throws IOException, ParseException {
-        super();
-    }
-
-
     public HomePageZomato clickOnSearchBox() {
         mobileInteraction.waitForElementToAppearAndClick(box_searchBox);
         return this;

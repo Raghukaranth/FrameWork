@@ -29,7 +29,7 @@ public class TestExecutor {
     public static HashMap<Integer, List<String>> testTimeMap = new HashMap<>();
     public static int retryCount = 0;
 
-    public TestExecutor() throws IOException {
+    public TestExecutor() {
         configProperty = ConfigProperty.getInstance(FilePath.CONFIG_PROPS);
     }
 
