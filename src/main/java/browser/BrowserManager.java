@@ -10,7 +10,7 @@ import java.util.concurrent.TimeUnit;
 
 public class  BrowserManager {
 
-    //singleton class
+
     private BrowserManager() { }
     public static WebDriver BrowserSetUp(String browserName) {
         WebDriver webDriver = null;
