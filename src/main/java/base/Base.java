@@ -1,7 +1,7 @@
 package base;
 
 import org.testng.annotations.Test;
-import runner.TestRunner;
+import utils.runner.TestRunner;
 
 import java.util.Arrays;
 

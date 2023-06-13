@@ -1,14 +1,11 @@
 package base;
 
-import configuration.ConfigProperty;
+import constant.ConfigProperty;
 import interactions.MobileInteraction;
 import interactions.WebInteraction;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
-import org.json.simple.parser.ParseException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
-
-import java.io.IOException;
 
 import static base.BaseTest.appiumDriver;
 

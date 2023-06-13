@@ -1,12 +1,11 @@
 package utils;
 
-import configuration.ConfigProperty;
+import constant.ConfigProperty;
 import constant.ConfigConstant;
 import org.testng.IRetryAnalyzer;
 import org.testng.ITestResult;
 import utils.file.FilePath;
 
-import java.io.IOException;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class RetryUtil implements IRetryAnalyzer {
