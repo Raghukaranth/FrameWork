@@ -13,7 +13,7 @@ public class RetryUtil implements IRetryAnalyzer {
     private ConfigProperty configProperty;
     private AtomicInteger COUNTER;
 
-    public RetryUtil() throws IOException {
+    public RetryUtil() {
         configProperty = ConfigProperty.getInstance(FilePath.CONFIG_PROPS);
         COUNTER = new AtomicInteger(0);
     }

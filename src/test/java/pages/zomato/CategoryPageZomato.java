@@ -19,9 +19,6 @@ public class CategoryPageZomato extends Page {
     @AndroidFindBy(id = "button")
     private WebElement btn_add;
 
-    public CategoryPageZomato() throws IOException, ParseException {
-        super();
-    }
 
 
     public CategoryPageZomato addFood() {

@@ -19,7 +19,7 @@ public  class Page {
     protected WebInteraction webInteraction;
     protected MobileInteraction mobileInteraction;
 
-    public Page() throws IOException, ParseException {
+    public Page() {
         util.setData();
         if(ConfigProperty.PLATFORM.equalsIgnoreCase("Android")) {
             PageFactory.initElements(new AppiumFieldDecorator(appiumDriver), this);

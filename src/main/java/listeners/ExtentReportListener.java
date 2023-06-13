@@ -1,6 +1,6 @@
 package listeners;
 
-import driverManager.DriverManager;
+import base.BaseTest;
 import lombok.extern.slf4j.Slf4j;
 import org.testng.*;
 import utils.logger.ExtentReportHelper;
@@ -37,7 +37,7 @@ public class ExtentReportListener implements ISuiteListener, IInvokedMethodListe
             String getClassName = testResult.getTestClass().getName().split("\\.")[1];
             log.info("Test class name: " + getClassName + "Test method name: "+getMethodName+ "got failed");
             ExtentReportHelper.getTest().fail("Test class name: "+getClassName+ "Test method name: "+ getMethodName +" got failed");
-            ExtentReportHelper.addScreenshotOnFailure(DriverManager.getWebDriver(), getMethodName, getClassName);
+            ExtentReportHelper.addScreenshotOnFailure(BaseTest.getWebDriver(), getMethodName, getClassName);
         }
     }
 }

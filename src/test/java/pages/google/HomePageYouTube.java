@@ -12,9 +12,6 @@ public class HomePageYouTube extends Page {
     @FindBy(xpath = "//div[@id='start']")
     private WebElement logo_YouTube;
 
-    public HomePageYouTube() throws IOException, ParseException {
-        super();
-    }
 
     public HomePageYouTube validateYouTube() {
         Assert.assertTrue(webInteraction.waitForElementToAppear(logo_YouTube));

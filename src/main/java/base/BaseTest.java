@@ -2,8 +2,7 @@ package base;
 
 import browser.BrowserManager;
 import configuration.ConfigProperty;
-import database.DataBaseUtil;
-import driverManager.DriverManager;
+import browser.DataBaseUtil;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.remote.MobileCapabilityType;
@@ -39,8 +38,10 @@ public class BaseTest {
     public Page nakkanpage;
 
     @BeforeSuite
-    public void BeforeSuite(ITestContext result) throws IOException, ParseException, SQLException {
-        DataBaseUtil.createConnection();
+    public void BeforeSuite(ITestContext result) throws IOException, ParseException {
+        try {
+            DataBaseUtil.createConnection();
+        } catch(SQLException e) { e.printStackTrace(); }
         util.setData();
         if(ConfigProperty.PLATFORM.equalsIgnoreCase("Android")) {
             this.appiumServer = startAppiumServer(setUpServer(result.getName()));
@@ -49,7 +50,7 @@ public class BaseTest {
     }
 
     @BeforeMethod
-    public void BeforeMethod() throws IOException, ParseException, SQLException {
+    public void BeforeMethod() {
         util.setData();
         if(ConfigProperty.PLATFORM.equalsIgnoreCase("Android")) {
                 appiumDriver = launchApp(appiumThread.get().getUrl(), Platform.ANDROID);
@@ -57,19 +58,23 @@ public class BaseTest {
         }
         else {
             webDriver = BrowserManager.BrowserSetUp("chrome");
-            DriverManager.setWebDriver(webDriver);
-            DriverManager.getWebDriver().get(ConfigProperty.URL);
+            setWebDriver(webDriver);
+            getWebDriver().get(ConfigProperty.URL);
         }
 
     }
 
     @AfterMethod
-    public void AfterMethod() throws SQLException {
-        DataBaseUtil.closeConnection();
+    public void AfterMethod() {
+        try {
+            DataBaseUtil.closeConnection();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @AfterSuite
-    public void AfterSuite() throws IOException, ParseException {
+    public void AfterSuite() {
         util.setData();
         if(ConfigProperty.PLATFORM.equalsIgnoreCase("Android"))
                 stopServer();
@@ -119,4 +124,10 @@ public class BaseTest {
         }
         return desiredCaps;
     }
+
+    private static ThreadLocal<WebDriver> webDriverThreadLocal = new ThreadLocal<>();
+    public static WebDriver getWebDriver() {
+        return webDriverThreadLocal.get();
+    }
+    public static void setWebDriver(WebDriver webDriver) { webDriverThreadLocal.set(webDriver);}
 }
