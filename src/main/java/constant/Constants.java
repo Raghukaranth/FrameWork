@@ -4,7 +4,7 @@ import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 
 public interface Constants {
-    long TIMEOUT_LONG  = 30;
+    long TIMEOUT_LONG  = 20;
     String CELLPHONE_ACCESSORIES = "Cell Phones & Accessories";
     String COMPUTER_TAB_AND_NETWORKS = "Computers/Tablets & Networking";
 

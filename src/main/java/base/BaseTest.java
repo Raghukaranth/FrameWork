@@ -1,7 +1,8 @@
 package base;
 
 import browser.BrowserManager;
-import configuration.ConfigProperty;
+import com.aventstack.extentreports.ExtentReports;
+import constant.ConfigProperty;
 import browser.DataBaseUtil;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
@@ -19,6 +20,7 @@ import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import utils.file.FilePath;
+import utils.logger.ExtentReportHelper;
 
 import java.io.File;
 import java.io.IOException;
@@ -38,7 +40,8 @@ public class BaseTest {
     public Page nakkanpage;
 
     @BeforeSuite
-    public void BeforeSuite(ITestContext result) throws IOException, ParseException {
+    public void BeforeSuite(ITestContext result) {
+        ExtentReportHelper.initReport();
         try {
             DataBaseUtil.createConnection();
         } catch(SQLException e) { e.printStackTrace(); }
@@ -126,8 +129,7 @@ public class BaseTest {
     }
 
     private static ThreadLocal<WebDriver> webDriverThreadLocal = new ThreadLocal<>();
-    public static WebDriver getWebDriver() {
-        return webDriverThreadLocal.get();
-    }
+    public static WebDriver getWebDriver() { return webDriverThreadLocal.get(); }
+
     public static void setWebDriver(WebDriver webDriver) { webDriverThreadLocal.set(webDriver);}
 }

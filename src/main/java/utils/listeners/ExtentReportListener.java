@@ -1,11 +1,13 @@
-package listeners;
+package utils.listeners;
 
 import base.BaseTest;
+import com.aventstack.extentreports.Status;
 import lombok.extern.slf4j.Slf4j;
 import org.testng.*;
 import utils.logger.ExtentReportHelper;
 
-import static sun.security.ssl.SSLLogger.info;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 
 @Slf4j
 public class ExtentReportListener implements ISuiteListener, IInvokedMethodListener {
@@ -32,11 +34,15 @@ public class ExtentReportListener implements ISuiteListener, IInvokedMethodListe
 
     @Override
     public void afterInvocation(IInvokedMethod method, ITestResult testResult) {
+        Throwable throwable = testResult.getThrowable();
+        String exceptionComment = throwable == null ? null : throwable.getMessage() == null ? throwable.toString() : throwable.getMessage();
+
         if (testResult.getStatus() == ITestResult.FAILURE) {
             String getMethodName = testResult.getMethod().getConstructorOrMethod().getName();
             String getClassName = testResult.getTestClass().getName().split("\\.")[1];
             log.info("Test class name: " + getClassName + "Test method name: "+getMethodName+ "got failed");
             ExtentReportHelper.getTest().fail("Test class name: "+getClassName+ "Test method name: "+ getMethodName +" got failed");
+            ExtentReportHelper.updateResultInReport(ExtentReportHelper.mapTestngStatusToExtentStatus(testResult.getStatus()), exceptionComment);
             ExtentReportHelper.addScreenshotOnFailure(BaseTest.getWebDriver(), getMethodName, getClassName);
         }
     }

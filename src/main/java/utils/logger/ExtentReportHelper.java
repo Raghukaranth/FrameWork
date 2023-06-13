@@ -1,5 +1,6 @@
 package utils.logger;
 
+import base.BaseTest;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
@@ -8,7 +9,10 @@ import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.reporter.configuration.Theme;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.events.EventFiringWebDriver;
+import org.testng.ITestResult;
 import utils.ScreenShotUtil;
 
 import java.io.BufferedReader;
@@ -91,8 +95,9 @@ public class ExtentReportHelper {
     }
 
     public static void addScreenshotOnFailure(WebDriver driver, String testname, String testClassName) {
+        EventFiringWebDriver edriver = new EventFiringWebDriver(BaseTest.webDriver);
         try {
-            ExtentReportHelper.getTest().fail("Screenshot Of Failed Screen", MediaEntityBuilder.createScreenCaptureFromBase64String(ScreenShotUtil.takeScreenshotAtEndOfTest(testClassName)).build());
+            ExtentReportHelper.getTest().fail("Screenshot Of Failed Screen", MediaEntityBuilder.createScreenCaptureFromBase64String(edriver.getScreenshotAs(OutputType.BASE64)).build());
         } catch (Exception e) {
             log.error("Error While Taking Screenshot: " + e.getMessage());
             updateResultInReport(Status.FAIL, null);
@@ -102,5 +107,18 @@ public class ExtentReportHelper {
     public static void updateResultInReport(Status status, String comment) {
         comment = comment == null ? "" : comment;
         extentTest.get().log(status, comment);
+    }
+
+    public synchronized static Status mapTestngStatusToExtentStatus(int status) {
+        switch (status) {
+            case ITestResult.SUCCESS:
+                return Status.PASS;
+
+            case ITestResult.FAILURE:
+                return Status.FAIL;
+
+            default:
+                return Status.SKIP;
+        }
     }
 }
