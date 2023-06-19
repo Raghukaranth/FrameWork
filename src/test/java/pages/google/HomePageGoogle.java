@@ -24,7 +24,7 @@ public class HomePageGoogle extends Page {
         return this;
     }
 
-    public HomePageYouTube clickOnYouTube() throws IOException, ParseException {
+    public HomePageYouTube clickOnYouTube() {
         webInteraction.actionsForFrames(frame_apps);
         Assert.assertTrue(webInteraction.waitForElementToAppearAndClick(btn_youTubeApp));
         return new HomePageYouTube();

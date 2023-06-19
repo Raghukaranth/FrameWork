@@ -1,16 +1,14 @@
 package base;
 
-import browser.BrowserManager;
-import com.aventstack.extentreports.ExtentReports;
+import genericUtility.BrowserManager;
 import constant.ConfigProperty;
-import browser.DataBaseUtil;
+import genericUtility.DataBaseUtil;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.remote.MobileCapabilityType;
 import io.appium.java_client.service.local.AppiumDriverLocalService;
 import io.appium.java_client.service.local.AppiumServiceBuilder;
 import io.appium.java_client.service.local.flags.GeneralServerFlag;
-import org.json.simple.parser.ParseException;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -23,9 +21,7 @@ import utils.file.FilePath;
 import utils.logger.ExtentReportHelper;
 
 import java.io.File;
-import java.io.IOException;
 import java.net.URL;
-import java.sql.SQLException;
 import java.util.concurrent.TimeUnit;
 
 import static constant.Constants.TIMEOUT_LONG;
@@ -42,9 +38,7 @@ public class BaseTest {
     @BeforeSuite
     public void BeforeSuite(ITestContext result) {
         ExtentReportHelper.initReport();
-        try {
-            DataBaseUtil.createConnection();
-        } catch(SQLException e) { e.printStackTrace(); }
+        DataBaseUtil.createConnection();
         util.setData();
         if(ConfigProperty.PLATFORM.equalsIgnoreCase("Android")) {
             this.appiumServer = startAppiumServer(setUpServer(result.getName()));
@@ -63,17 +57,14 @@ public class BaseTest {
             webDriver = BrowserManager.BrowserSetUp("chrome");
             setWebDriver(webDriver);
             getWebDriver().get(ConfigProperty.URL);
+
         }
 
     }
 
     @AfterMethod
     public void AfterMethod() {
-        try {
-            DataBaseUtil.closeConnection();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        DataBaseUtil.closeConnection();
     }
 
     @AfterSuite

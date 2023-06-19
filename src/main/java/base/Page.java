@@ -1,19 +1,19 @@
 package base;
 
 import constant.ConfigProperty;
+import interactions.ApiInteraction;
 import interactions.MobileInteraction;
 import interactions.WebInteraction;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 
 import static base.BaseTest.appiumDriver;
+import static base.BaseTest.webDriver;
 
 public  class Page {
-
-    public WebDriver webDriver = BaseTest.webDriver;
     ConfigProperty util = new ConfigProperty();
     protected WebInteraction webInteraction;
+    protected ApiInteraction apiInteraction;
     protected MobileInteraction mobileInteraction;
 
     public Page() {
@@ -24,7 +24,8 @@ public  class Page {
         }
         else {
             PageFactory.initElements(webDriver, this);
-            webInteraction = new WebInteraction(this.webDriver);
+            webInteraction = new WebInteraction(webDriver);
         }
+        apiInteraction = new ApiInteraction(apiInteraction);
     }
 }

@@ -1,5 +1,6 @@
 package interactions;
 
+import base.BaseTest;
 import constant.Constants;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
@@ -10,8 +11,11 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 
+import static base.BaseTest.*;
+
 public class WebInteraction implements Constants {
     WebDriver webDriver;
+
     public JavascriptExecutor jsExecutor;
 
     public WebInteraction(WebDriver webDriver) {

@@ -1,4 +1,4 @@
-package browser;
+package genericUtility;
 
 import constant.Constants;
 import io.github.bonigarcia.wdm.WebDriverManager;
