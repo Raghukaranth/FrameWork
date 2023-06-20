@@ -1,4 +1,4 @@
-package genericUtility;
+package genericLib;
 
 import com.mysql.jdbc.Driver;
 

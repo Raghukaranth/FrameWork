@@ -1112,9 +1112,9 @@
     <tags>View</tags>
     <tags>categoryTag:General</tags>
   </descriptors>
-  <descriptors xmi:id="_COjmUPYkEe29EYfpD9j_3A" elementId="org.eclipse.ui.genericUtility.view" label="Internal Web Browser" iconURI="platform:/plugin/org.eclipse.ui.genericUtility/icons/obj16/internal_browser.png" tooltip="" allowMultiple="true" category="General" closeable="true" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityView">
-    <persistedState key="originalCompatibilityViewClass" value="org.eclipse.ui.internal.genericUtility.WebBrowserView"/>
-    <persistedState key="originalCompatibilityViewBundle" value="org.eclipse.ui.genericUtility"/>
+  <descriptors xmi:id="_COjmUPYkEe29EYfpD9j_3A" elementId="org.eclipse.ui.genericLib.view" label="Internal Web Browser" iconURI="platform:/plugin/org.eclipse.ui.genericLib/icons/obj16/internal_browser.png" tooltip="" allowMultiple="true" category="General" closeable="true" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityView">
+    <persistedState key="originalCompatibilityViewClass" value="org.eclipse.ui.internal.genericLib.WebBrowserView"/>
+    <persistedState key="originalCompatibilityViewBundle" value="org.eclipse.ui.genericLib"/>
     <tags>View</tags>
     <tags>categoryTag:General</tags>
   </descriptors>
@@ -1464,7 +1464,7 @@
   <commands xmi:id="_92vRiPYjEe29EYfpD9j_3A" elementId="org.eclipse.jdt.ui.edit.text.java.create.getter.setter" commandName="Generate Getters and Setters" description="Generate Getter and Setter methods for type's fields" category="_92dktPYjEe29EYfpD9j_3A"/>
   <commands xmi:id="_92vRifYjEe29EYfpD9j_3A" elementId="org.eclipse.egit.ui.RepositoriesViewConfigureFetch" commandName="Configure Fetch..." category="_92dksPYjEe29EYfpD9j_3A"/>
   <commands xmi:id="_92vRivYjEe29EYfpD9j_3A" elementId="org.eclipse.egit.ui.RepositoriesViewShowInSystemExplorer" commandName="Show In System Explorer" category="_92dksPYjEe29EYfpD9j_3A"/>
-  <commands xmi:id="_92v4kPYjEe29EYfpD9j_3A" elementId="org.eclipse.jdt.ui.edit.text.java.open.external.javadoc" commandName="Open Attached Javadoc" description="Open the attached Javadoc of the selected element in a genericUtility" category="_92bIePYjEe29EYfpD9j_3A"/>
+  <commands xmi:id="_92v4kPYjEe29EYfpD9j_3A" elementId="org.eclipse.jdt.ui.edit.text.java.open.external.javadoc" commandName="Open Attached Javadoc" description="Open the attached Javadoc of the selected element in a genericLib" category="_92bIePYjEe29EYfpD9j_3A"/>
   <commands xmi:id="_92v4kfYjEe29EYfpD9j_3A" elementId="org.eclipse.ui.edit.text.shiftLeft" commandName="Shift Left" description="Shift a block of text to the left" category="_92bIcvYjEe29EYfpD9j_3A"/>
   <commands xmi:id="_92v4kvYjEe29EYfpD9j_3A" elementId="org.eclipse.wst.sse.ui.structure.select.next" commandName="Select Next Element" description="Expand selection to include next sibling" category="_92bIcvYjEe29EYfpD9j_3A"/>
   <commands xmi:id="_92v4k_YjEe29EYfpD9j_3A" elementId="org.eclipse.jdt.debug.ui.commands.AddClassPrepareBreakpoint" commandName="Add Class Load Breakpoint" description="Add a class load breakpoint" category="_92bvi_YjEe29EYfpD9j_3A"/>
@@ -1703,7 +1703,7 @@
   <commands xmi:id="_928s4PYjEe29EYfpD9j_3A" elementId="org.eclipse.ui.edit.text.showRulerAnnotationInformation" commandName="Show Ruler Annotation Tooltip" description="Displays annotation information for the caret line in a focused hover" category="_92bId_YjEe29EYfpD9j_3A"/>
   <commands xmi:id="_928s4fYjEe29EYfpD9j_3A" elementId="org.eclipse.jdt.ui.correction.renameInFile.assist" commandName="Quick Assist - Rename in file" description="Invokes quick assist and selects 'Rename in file'" category="_92dktPYjEe29EYfpD9j_3A"/>
   <commands xmi:id="_928s4vYjEe29EYfpD9j_3A" elementId="org.eclipse.egit.ui.team.ReplaceWithHead" commandName="Replace with HEAD revision" category="_92dksPYjEe29EYfpD9j_3A"/>
-  <commands xmi:id="_928s4_YjEe29EYfpD9j_3A" elementId="org.eclipse.ui.genericUtility.openBrowser" commandName="Open Browser" description="Opens the default web genericUtility." category="_92bvhfYjEe29EYfpD9j_3A">
+  <commands xmi:id="_928s4_YjEe29EYfpD9j_3A" elementId="org.eclipse.ui.genericLib.openBrowser" commandName="Open Browser" description="Opens the default web genericLib." category="_92bvhfYjEe29EYfpD9j_3A">
     <parameters xmi:id="_928s5PYjEe29EYfpD9j_3A" elementId="url" name="URL"/>
     <parameters xmi:id="_928s5fYjEe29EYfpD9j_3A" elementId="browserId" name="Browser Id"/>
     <parameters xmi:id="_928s5vYjEe29EYfpD9j_3A" elementId="name" name="Browser Name"/>
@@ -2011,7 +2011,7 @@
   </commands>
   <commands xmi:id="_93HE9PYjEe29EYfpD9j_3A" elementId="org.eclipse.eclemma.ui.testNgShortcut.coverage" commandName="Coverage TestNG Test" description="Coverage TestNG Test" category="_92bvi_YjEe29EYfpD9j_3A"/>
   <commands xmi:id="_93HE9fYjEe29EYfpD9j_3A" elementId="org.eclipse.debug.ui.commands.StepReturn" commandName="Step Return" description="Step return" category="_92bvi_YjEe29EYfpD9j_3A"/>
-  <commands xmi:id="_93HE9vYjEe29EYfpD9j_3A" elementId="org.eclipse.ui.genericUtility.openBundleResource" commandName="Open Resource in Browser" description="Opens a bundle resource in the default web genericUtility." category="_92bvhfYjEe29EYfpD9j_3A">
+  <commands xmi:id="_93HE9vYjEe29EYfpD9j_3A" elementId="org.eclipse.ui.genericLib.openBundleResource" commandName="Open Resource in Browser" description="Opens a bundle resource in the default web genericLib." category="_92bvhfYjEe29EYfpD9j_3A">
     <parameters xmi:id="_93HE9_YjEe29EYfpD9j_3A" elementId="plugin" name="Plugin"/>
     <parameters xmi:id="_93HE-PYjEe29EYfpD9j_3A" elementId="path" name="Path"/>
   </commands>

@@ -5,6 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
 
+
 public class HomePageRmg extends Page {
     @FindBy(xpath = "//h2[normalize-space()='Welcome To Project Management System']")
     private WebElement txt_header;
@@ -13,7 +14,7 @@ public class HomePageRmg extends Page {
     private WebElement link_project;
 
     public ProjectPage checkHeaderAndClickOnProject() {
-        apiInteraction.apiCreateUser();
+        apiInteraction.callPostMethod();
         Assert.assertTrue(webInteraction.waitForElementToAppear(txt_header));
         Assert.assertTrue(webInteraction.waitForElementToAppearAndClick(link_project));
         return new ProjectPage();

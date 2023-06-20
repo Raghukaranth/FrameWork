@@ -54,7 +54,7 @@ public class ConfigProperty {
     public void setData() {
         URL = new ConfigProperty().getData("url");
         PLATFORM = new ConfigProperty().getData("platform");
-        BROWSER = new ConfigProperty().getData("genericUtility");
+        BROWSER = new ConfigProperty().getData("genericLib");
         URL = new ConfigProperty().getData("url");
 
         PLATFORM_VERSION =  new ConfigProperty().getData("platform_version");

@@ -7,11 +7,25 @@ import pages.api.ProjectPage;
 
 public class ApiTestRMG extends BaseTest {
     @Test
-    public void TestApiForWeb() {
+    public void testApiForWeb() {
         String pid = null;
         LoginPageRmg loginPage = new LoginPageRmg();
         loginPage.enterUserNamePasswordAndLogin()
                 .checkHeaderAndClickOnProject()
-                .checkName(pid);
+                .validateForCreatedResponse(pid);
+    }
+
+    @Test
+    public void testApiDeletion() {
+        String pid = null;
+        LoginPageRmg loginPage = new LoginPageRmg();
+        loginPage.enterUserNamePasswordAndLogin()
+                .checkHeaderAndClickOnProject()
+                .apiDeletedResponse(pid)
+                .clickOnLogOutButton()
+                .enterUserNamePasswordAndLogin()
+                .checkHeaderAndClickOnProject();
+
+
     }
 }

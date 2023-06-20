@@ -1,4 +1,4 @@
-package genericUtility;
+package genericLib;
 
 import constant.Constants;
 import io.github.bonigarcia.wdm.WebDriverManager;

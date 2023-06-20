@@ -1,6 +1,5 @@
 package interactions;
 
-import genericUtility.RestAssuredLibrary;
 import constant.ConfigProperty;
 import constant.Constants;
 import io.restassured.http.ContentType;
@@ -16,27 +15,24 @@ import static io.restassured.RestAssured.*;
 @Slf4j
 public class ApiInteraction implements Constants {
     ApiInteraction apiInteraction;
-    public RestAssuredLibrary restAssuredLibrary = new RestAssuredLibrary();
+    String getApi = "/projects/{pid}";
 
     public ApiInteraction(ApiInteraction apiInteraction) {
         this.apiInteraction = apiInteraction;
     }
 
-    public void createUserUsingAPI() {
-        apiInteraction.apiCreateUser();
-    }
-
-    public void apiCreateUser() {
+    public Response callPostMethod() {
         baseURI = ConfigProperty.URL;
 
 
         File file = new File("./src/test/resources/data.json");
 
-        given()
+        Response response = given()
                 .body(file)
                 .contentType(ContentType.JSON)
                 .when()
                 .post("/addProject");
+        return response;
     }
 
     public void verifyResponseCode(Response response, int statusCode) {
@@ -47,8 +43,15 @@ public class ApiInteraction implements Constants {
         Response response = given()
                 .pathParam("pid", pid)
                 .when().log().all()
-                .get("/projects/{pid}");
+                .get(getApi);
         return response;
     }
 
+    public Response callDeleteMethod(String pid) {
+        Response response = given()
+                .pathParam("pid", pid)
+                .when().log().all()
+                .delete(getApi);
+        return  response;
+    }
 }

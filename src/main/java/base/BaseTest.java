@@ -1,8 +1,8 @@
 package base;
 
-import genericUtility.BrowserManager;
+import genericLib.BrowserManager;
 import constant.ConfigProperty;
-import genericUtility.DataBaseUtil;
+import genericLib.DataBaseUtil;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.remote.MobileCapabilityType;

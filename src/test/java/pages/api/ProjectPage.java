@@ -14,11 +14,31 @@ public class ProjectPage extends Page {
     @FindBy(xpath = "//td[contains(text(), 'TY_PROJ')]")
     private WebElement txt_project;
 
-    public ProjectPage checkName(String pid) {
+    @FindBy(xpath = "//a[text()='Logout']")
+    private WebElement btn_logOut;
+
+    public WebElement getProject() {
+        return txt_project;
+    }
+
+    public ProjectPage validateForCreatedResponse(String pid) {
         pid = txt_project.getText();
         Response response = apiInteraction.callGetMethod(pid);
         Assert.assertTrue(webInteraction.waitForElementToAppear(txt_name));
         apiInteraction.verifyResponseCode(response, Integer.parseInt("200"));
         return this;
     }
+
+    public ProjectPage apiDeletedResponse(String pid) {
+        pid = txt_project.getText();
+        apiInteraction.callDeleteMethod(pid);
+        return this;
+    }
+
+    public LoginPageRmg clickOnLogOutButton() {
+        Assert.assertTrue(webInteraction.waitForElementToAppearAndClick(btn_logOut));
+        return new LoginPageRmg();
+    }
+
+
 }
