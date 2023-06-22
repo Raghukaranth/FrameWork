@@ -98,7 +98,7 @@ public class WebInteraction implements Constants {
         try {
             WebDriverWait wait = new WebDriverWait(webDriver, TIMEOUT_LONG);
             wait.until(ExpectedConditions.visibilityOf(element));
-            element.click();
+            act.moveToElement(element).click().perform();
             return true;
         } catch (Exception e) { return false; }
     }
