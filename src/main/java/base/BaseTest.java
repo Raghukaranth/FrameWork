@@ -64,15 +64,15 @@ public class BaseTest {
 
     @AfterMethod
     public void AfterMethod() {
-        DataBaseUtil.closeConnection();
-    }
-
-    @AfterSuite
-    public void AfterSuite() {
         util.setData();
         if(ConfigProperty.PLATFORM.equalsIgnoreCase("Android"))
                 stopServer();
         else webDriver.quit();
+    }
+
+    @AfterSuite
+    public void AfterSuite() {
+        DataBaseUtil.closeConnection();
     }
 
     public static AppiumServiceBuilder builder = new AppiumServiceBuilder();
