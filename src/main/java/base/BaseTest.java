@@ -57,16 +57,16 @@ public class BaseTest {
             webDriver = BrowserManager.BrowserSetUp("chrome");
             setWebDriver(webDriver);
             getWebDriver().get(ConfigProperty.URL);
-
         }
-
     }
 
     @AfterMethod
     public void AfterMethod() {
         util.setData();
-        if(ConfigProperty.PLATFORM.equalsIgnoreCase("Android"))
-                stopServer();
+        if(ConfigProperty.PLATFORM.equalsIgnoreCase("Android")) {
+            appiumDriver.closeApp();
+            stopServer();
+        }
         else webDriver.quit();
     }
 
