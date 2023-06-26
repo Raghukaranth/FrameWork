@@ -12,10 +12,6 @@ public class GoogleHomeTest extends BaseTest {
     public void verifyYouTubePageFromFrame() throws IOException, ParseException {
         HomePageGoogle homePageGoogle = new HomePageGoogle();
         homePageGoogle.clickOnApps()
-
-
-
-
                 .clickOnYouTube();
     }
 }
