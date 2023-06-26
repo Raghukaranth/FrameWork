@@ -1,6 +1,5 @@
 package interactions;
 
-import base.BaseTest;
 import constant.Constants;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
@@ -11,7 +10,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 
-import static base.BaseTest.*;
 
 public class WebInteraction implements Constants {
     WebDriver webDriver;
@@ -68,6 +66,26 @@ public class WebInteraction implements Constants {
             result = false;
         } finally {
             webDriver.manage().timeouts().implicitlyWait(Constants.TIMEOUT_LONG, TimeUnit.SECONDS);
+        }
+        return result;
+    }
+
+    public boolean waitForElementToAppearToClickOrActionsClick(WebElement element, String elemDetails, long timeOut) {
+        boolean result;
+        try {
+            webDriver.manage().timeouts().implicitlyWait(timeOut, TimeUnit.SECONDS);
+            WebDriverWait wait = new WebDriverWait(webDriver, TIMEOUT_LONG);
+            wait.until(ExpectedConditions.visibilityOf(element));
+            element.click();
+            result = true;
+        } catch (ElementClickInterceptedException e) {
+            Actions actions = new Actions(webDriver);
+            WebDriverWait wait = new WebDriverWait(webDriver, TIMEOUT_LONG);
+            wait.until(ExpectedConditions.visibilityOf(element));
+            actions.moveToElement(element).pause(Duration.ofSeconds(2)).click().perform();
+            result = true;
+        } catch (Exception e){
+            result = false;
         }
         return result;
     }
