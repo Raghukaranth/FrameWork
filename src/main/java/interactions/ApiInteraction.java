@@ -1,38 +1,33 @@
 package interactions;
 
-import constant.ConfigProperty;
 import constant.Constants;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import lombok.extern.slf4j.Slf4j;
 import org.testng.Assert;
+import POJO.PojoCls;
 
 
-
-import java.io.File;
+import java.util.HashMap;
 
 import static io.restassured.RestAssured.*;
 @Slf4j
 public class ApiInteraction implements Constants {
     ApiInteraction apiInteraction;
-    String getApi = "/projects/{pid}";
-
-    public ApiInteraction(ApiInteraction apiInteraction) {
-        this.apiInteraction = apiInteraction;
-    }
-
-    public Response callPostMethod() {
-        baseURI = ConfigProperty.URL;
+    String getApi = "/user";
+    int id;
 
 
-        File file = new File("./src/test/resources/data.json");
+    public Response callPostMethod(PojoCls pojoCls) {
+//        File file = new File("./src/test/resources/data.json");
+       Response response = given()
+               .contentType(ContentType.JSON)
+               .accept(ContentType.JSON)
+               .body(pojoCls)
+               .when()
+               .post(baseURI + getApi);
 
-        Response response = given()
-                .body(file)
-                .contentType(ContentType.JSON)
-                .when()
-                .post("/addProject");
-        return response;
+       return response;
     }
 
     public void verifyResponseCode(Response response, int statusCode) {
@@ -53,5 +48,18 @@ public class ApiInteraction implements Constants {
                 .when().log().all()
                 .delete(getApi);
         return  response;
+    }
+
+    public Response callUpdateMethod() {
+        HashMap data=new HashMap();
+        data.put("Name","Darshan");
+        data.put("Job","Null");
+        Response response = given()
+                .contentType(ContentType.JSON)
+                .body(data)
+                .when()
+                .put(baseURI + getApi + "/id");
+        verifyResponseCode(response, 200);
+        return response;
     }
 }

@@ -9,7 +9,7 @@ import java.io.IOException;
 
 public class ZomatoTest extends BaseTest {
     @Test
-    public void bookFoodZomato() throws IOException, ParseException {
+    public void bookFoodZomato() {
         HomePageZomato homePageZomato = new HomePageZomato();
         homePageZomato.clickOnSearchBox()
                 .enterRestaurant()

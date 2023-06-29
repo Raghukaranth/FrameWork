@@ -28,7 +28,7 @@ public class HomePageZomato extends Page {
         return this;
     }
 
-    public CategoryPageZomato enterRestaurant() throws IOException, ParseException {
+    public CategoryPageZomato enterRestaurant() {
         mobileInteraction.enterText(txt_searchRestaurant, Constants.Restaurant);
         mobileInteraction.tapByCoordinates(513, 513, 5);
         return new CategoryPageZomato();

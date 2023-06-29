@@ -2,6 +2,7 @@ package utils.listeners;
 
 import base.BaseTest;
 import com.aventstack.extentreports.Status;
+import constant.ConfigProperty;
 import lombok.extern.slf4j.Slf4j;
 import org.testng.*;
 import utils.logger.ExtentReportHelper;
@@ -43,7 +44,9 @@ public class ExtentReportListener implements ISuiteListener, IInvokedMethodListe
             log.info("Test class name: " + getClassName + "Test method name: "+getMethodName+ "got failed");
             ExtentReportHelper.getTest().fail("Test class name: "+getClassName+ "Test method name: "+ getMethodName +" got failed");
             ExtentReportHelper.updateResultInReport(ExtentReportHelper.mapTestngStatusToExtentStatus(testResult.getStatus()), exceptionComment);
-            ExtentReportHelper.addScreenshotOnFailure(BaseTest.getWebDriver(), getMethodName, getClassName);
+            if(ConfigProperty.PLATFORM.equalsIgnoreCase("Android"))
+                 ExtentReportHelper.addScreenshotOnFailure(BaseTest.getWebDriver(), getMethodName, getClassName);
+            else ExtentReportHelper.addScreenshotOnFailure(BaseTest.appiumDriver, getMethodName, getClassName);
         }
     }
 }
