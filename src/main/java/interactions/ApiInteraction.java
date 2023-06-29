@@ -5,7 +5,6 @@ import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import lombok.extern.slf4j.Slf4j;
 import org.testng.Assert;
-import POJO.PojoCls;
 
 
 import java.util.HashMap;
@@ -16,19 +15,6 @@ public class ApiInteraction implements Constants {
     ApiInteraction apiInteraction;
     String getApi = "/user";
     int id;
-
-
-    public Response callPostMethod(PojoCls pojoCls) {
-//        File file = new File("./src/test/resources/data.json");
-       Response response = given()
-               .contentType(ContentType.JSON)
-               .accept(ContentType.JSON)
-               .body(pojoCls)
-               .when()
-               .post(baseURI + getApi);
-
-       return response;
-    }
 
     public void verifyResponseCode(Response response, int statusCode) {
         Assert.assertEquals(response.getStatusCode(), statusCode);
