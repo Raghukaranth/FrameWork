@@ -1,7 +1,6 @@
 package base;
 
 import constant.ConfigProperty;
-import interactions.ApiInteraction;
 import interactions.MobileInteraction;
 import interactions.WebInteraction;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
@@ -13,7 +12,6 @@ import static base.BaseTest.webDriver;
 public  class Page {
     ConfigProperty util = new ConfigProperty();
     protected WebInteraction webInteraction;
-    protected ApiInteraction apiInteraction;
     protected MobileInteraction mobileInteraction;
 
     public Page() {
