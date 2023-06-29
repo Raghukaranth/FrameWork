@@ -9,7 +9,7 @@ import java.io.IOException;
 
 public class GoogleHomeTest extends BaseTest {
     @Test
-    public void verifyYouTubePageFromFrame() throws IOException, ParseException {
+    public void verifyYouTubePageFromFrame() {
         HomePageGoogle homePageGoogle = new HomePageGoogle();
         homePageGoogle.clickOnApps()
                 .clickOnYouTube();

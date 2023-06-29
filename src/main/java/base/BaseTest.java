@@ -73,6 +73,7 @@ public class BaseTest {
     @AfterSuite
     public void AfterSuite() {
         DataBaseUtil.closeConnection();
+        ExtentReportHelper.flushReport();
     }
 
     public static AppiumServiceBuilder builder = new AppiumServiceBuilder();

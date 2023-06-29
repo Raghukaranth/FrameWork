@@ -1,6 +1,6 @@
 {
   "platform": "web",
-  "url": "http://localhost:8084",
+  "url": "https://www.reqres.in",
   "platform_version": "",
   "app_package": "com.application.zomato",
   "app_activity": ".activities.Splash",

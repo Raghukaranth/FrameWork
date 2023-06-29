@@ -26,6 +26,5 @@ public  class Page {
             PageFactory.initElements(webDriver, this);
             webInteraction = new WebInteraction(webDriver);
         }
-        apiInteraction = new ApiInteraction(apiInteraction);
     }
 }

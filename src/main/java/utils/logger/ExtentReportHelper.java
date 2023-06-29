@@ -9,11 +9,9 @@ import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.reporter.configuration.Theme;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
 import org.testng.ITestResult;
-import utils.ScreenShotUtil;
 
 import java.io.BufferedReader;
 import java.io.File;
