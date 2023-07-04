@@ -1,9 +1,10 @@
 {
-  "platform": "web",
-  "url": "https://www.reqres.in",
+  "platform": "Android",
+  "Automation_name": "UiAutomator2",
+  "url": "",
   "platform_version": "",
-  "app_package": "com.application.zomato",
-  "app_activity": ".activities.Splash",
+  "app_package": "io.appium.android.apis",
+  "app_activity": ".ApiDemos",
   "no_reset": "true",
   "udid": "",
 

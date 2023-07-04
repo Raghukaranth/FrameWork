@@ -1,14 +1,17 @@
 package interactions;
 
+import com.google.common.collect.ImmutableMap;
 import constant.Constants;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.PerformsTouchActions;
 import io.appium.java_client.TouchAction;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 
 import static io.appium.java_client.touch.WaitOptions.waitOptions;
@@ -28,7 +31,7 @@ public class MobileInteraction implements Constants {
         try{
 
             appiumDriver.manage().timeouts().implicitlyWait(timeOutInSeconds, TimeUnit.SECONDS);
-            WebDriverWait wait = new WebDriverWait(appiumDriver, TIMEOUT_LONG);
+            WebDriverWait wait = new WebDriverWait(appiumDriver, Duration.ofSeconds(TIMEOUT_LONG));
             wait.until(ExpectedConditions.visibilityOf(element));
             result = true;
             System.out.println("try");
@@ -70,7 +73,7 @@ public class MobileInteraction implements Constants {
         boolean result;
         try {
             appiumDriver.manage().timeouts().implicitlyWait(timeOut, TimeUnit.SECONDS);
-            WebDriverWait wait = new WebDriverWait(appiumDriver, TIMEOUT_LONG);
+            WebDriverWait wait = new WebDriverWait(appiumDriver, Duration.ofSeconds(TIMEOUT_LONG));
             wait.until(ExpectedConditions.visibilityOf(element));
             element.click();
             result = true;
@@ -88,5 +91,18 @@ public class MobileInteraction implements Constants {
                 .waitAction(waitOptions(ofSeconds(seconds)))
                 .release()
                 .perform();
+    }
+
+    public void swipeUpGesture(int left,int top,int width, int height) {
+        ImmutableMap.Builder<String, Object> builder = ImmutableMap.builder();
+        builder.put("left", left);
+        builder.put("top", top);
+        builder.put("width", width);
+        builder.put("height", height);
+        builder.put("direction", "up");
+        builder.put("percent", 0.75);
+
+        ImmutableMap<String, Object> parameters = builder.build();
+        ((JavascriptExecutor) appiumDriver).executeScript("mobile: swipeGesture", parameters);
     }
 }

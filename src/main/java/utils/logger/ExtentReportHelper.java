@@ -80,7 +80,6 @@ public class ExtentReportHelper {
 
     public static void flushReport() {
         extentReports.flush();
-        extentReports = null;
     }
 
     public static  void startTest(String testName) {

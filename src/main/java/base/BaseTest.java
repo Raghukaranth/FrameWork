@@ -22,6 +22,7 @@ import utils.logger.ExtentReportHelper;
 
 import java.io.File;
 import java.net.URL;
+import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 
 import static constant.Constants.TIMEOUT_LONG;
@@ -34,6 +35,7 @@ public class BaseTest {
     ConfigProperty util = new ConfigProperty();
     public AppiumDriverLocalService appiumServer;
     public Page nakkanpage;
+    private Platform platform;
 
     @BeforeSuite
     public void BeforeSuite(ITestContext result) {
@@ -64,7 +66,7 @@ public class BaseTest {
     public void AfterMethod() {
         util.setData();
         if(ConfigProperty.PLATFORM.equalsIgnoreCase("Android")) {
-            appiumDriver.closeApp();
+            appiumDriver.quit();
             stopServer();
         }
         else webDriver.quit();
@@ -82,7 +84,7 @@ public class BaseTest {
         builder.withIPAddress(FilePath.APPIUM_SERVER_IP)
                 .withAppiumJS(new File(FilePath.APPIUM_JS_FILE))
                 .usingAnyFreePort()
-                .withArgument(GeneralServerFlag.RELAXED_SECURITY);
+                .withArgument(GeneralServerFlag.BASEPATH, "/wd/hub/");
         AppiumService = AppiumDriverLocalService.buildService(builder);
         return AppiumService;
     }
@@ -99,18 +101,20 @@ public class BaseTest {
         return  AppiumService;
     }
 
-    public AppiumDriver launchApp(URL url, Platform platForm) {
+    public AppiumDriver launchApp(URL url, Platform platform) {
+        this.platform = platform;
         DesiredCapabilities capabilities;
         capabilities = setDesiredCapability("android");
         appiumDriver = new AndroidDriver(url, capabilities);
-        appiumDriver.manage().timeouts().implicitlyWait(TIMEOUT_LONG, TimeUnit.SECONDS);
+        appiumDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(TIMEOUT_LONG));
         return appiumDriver;
     }
 
     public DesiredCapabilities setDesiredCapability(String platform) {
         DesiredCapabilities desiredCaps = new DesiredCapabilities();
         if(ConfigProperty.PLATFORM.equalsIgnoreCase("Android")) {
-            desiredCaps.setCapability("platform", platform);
+            desiredCaps.setCapability(MobileCapabilityType.PLATFORM_NAME, platform);
+            desiredCaps.setCapability(MobileCapabilityType.AUTOMATION_NAME, ConfigProperty.AUTOMATION_NAME);
             desiredCaps.setCapability(MobileCapabilityType.PLATFORM_VERSION, ConfigProperty.PLATFORM_VERSION);
             desiredCaps.setCapability(MobileCapabilityType.UDID, ConfigProperty.UDID);
             desiredCaps.setCapability(MobileCapabilityType.NO_RESET, ConfigProperty.NO_RESET);

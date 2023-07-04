@@ -6,9 +6,9 @@
     </listeners>
     <test verbose="2" name="FrameWork">
         <classes>
-            <class name="tests.ApiTestRMG">
+            <class name="tests.GoogleHomeTest">
                 <methods>
-                    <include name="testApiPojo"/>
+                    <include name="verifyYouTubePageFromFrame"/>
                 </methods>
             </class>
         </classes>

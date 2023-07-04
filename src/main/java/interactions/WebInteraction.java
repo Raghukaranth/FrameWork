@@ -24,7 +24,7 @@ public class WebInteraction implements Constants {
         boolean result;
         try{
             webDriver.manage().timeouts().implicitlyWait(timeOutInSeconds, TimeUnit.SECONDS);
-            WebDriverWait wait = new WebDriverWait(webDriver, TIMEOUT_LONG);
+            WebDriverWait wait = new WebDriverWait(webDriver, Duration.ofSeconds(TIMEOUT_LONG));
             wait.until(ExpectedConditions.visibilityOf(element));
             result = true;
         } catch(Exception e) { return false; }
@@ -58,7 +58,7 @@ public class WebInteraction implements Constants {
         boolean result;
         try {
             webDriver.manage().timeouts().implicitlyWait(timeOut, TimeUnit.SECONDS);
-            WebDriverWait wait = new WebDriverWait(webDriver, TIMEOUT_LONG);
+            WebDriverWait wait = new WebDriverWait(webDriver, Duration.ofSeconds(TIMEOUT_LONG));
             wait.until(ExpectedConditions.visibilityOf(element));
             element.click();
             result = true;
@@ -74,13 +74,13 @@ public class WebInteraction implements Constants {
         boolean result;
         try {
             webDriver.manage().timeouts().implicitlyWait(timeOut, TimeUnit.SECONDS);
-            WebDriverWait wait = new WebDriverWait(webDriver, TIMEOUT_LONG);
+            WebDriverWait wait = new WebDriverWait(webDriver, Duration.ofSeconds(TIMEOUT_LONG));
             wait.until(ExpectedConditions.visibilityOf(element));
             element.click();
             result = true;
         } catch (ElementClickInterceptedException e) {
             Actions actions = new Actions(webDriver);
-            WebDriverWait wait = new WebDriverWait(webDriver, TIMEOUT_LONG);
+            WebDriverWait wait = new WebDriverWait(webDriver, Duration.ofSeconds(TIMEOUT_LONG));
             wait.until(ExpectedConditions.visibilityOf(element));
             actions.moveToElement(element).pause(Duration.ofSeconds(2)).click().perform();
             result = true;
@@ -114,7 +114,7 @@ public class WebInteraction implements Constants {
     public boolean clickActions(WebElement element) {
         Actions act = new Actions(webDriver);
         try {
-            WebDriverWait wait = new WebDriverWait(webDriver, TIMEOUT_LONG);
+            WebDriverWait wait = new WebDriverWait(webDriver, Duration.ofSeconds(TIMEOUT_LONG));
             wait.until(ExpectedConditions.visibilityOf(element));
             act.moveToElement(element).click().perform();
             return true;
@@ -122,17 +122,17 @@ public class WebInteraction implements Constants {
     }
 
     public void actionsForFrames(WebElement element) {
-        WebDriverWait wait = new WebDriverWait(webDriver, TIMEOUT_LONG);
+        WebDriverWait wait = new WebDriverWait(webDriver, Duration.ofSeconds(TIMEOUT_LONG));
         wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(element));
     }
 
     public void actionsForFrames(int index) {
-        WebDriverWait wait = new WebDriverWait(webDriver, TIMEOUT_LONG);
+        WebDriverWait wait = new WebDriverWait(webDriver, Duration.ofSeconds(TIMEOUT_LONG));
         wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(index));
     }
 
     public void actionsForFrames(String name) {
-        WebDriverWait wait = new WebDriverWait(webDriver, TIMEOUT_LONG);
+        WebDriverWait wait = new WebDriverWait(webDriver, Duration.ofSeconds(TIMEOUT_LONG));
         wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(name));
     }
 }

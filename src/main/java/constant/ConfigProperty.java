@@ -25,6 +25,8 @@ public class ConfigProperty {
     public static String APP_ACTIVITY;
     public static String NO_RESET;
     public static String UDID;
+
+    public static String AUTOMATION_NAME;
     private static Properties properties = new Properties();
     public static Map<String, String> configFileMap = new HashMap();
     Object obj;
@@ -57,6 +59,7 @@ public class ConfigProperty {
         BROWSER = new ConfigProperty().getData("genericLib");
         URL = new ConfigProperty().getData("url");
 
+        AUTOMATION_NAME = new ConfigProperty().getData("Automation_name");
         PLATFORM_VERSION =  new ConfigProperty().getData("platform_version");
         APP_PACKAGE = new ConfigProperty().getData("app_package");
         APP_ACTIVITY = new ConfigProperty().getData("app_activity");
