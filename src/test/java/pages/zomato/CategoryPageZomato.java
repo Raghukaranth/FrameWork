@@ -4,6 +4,7 @@ import io.appium.java_client.pagefactory.AndroidFindBy;
 import org.json.simple.parser.ParseException;
 import org.openqa.selenium.WebElement;
 import base.Page;
+import pages.apiDemos.HomePageApiDemos;
 
 import java.io.IOException;
 import java.util.List;
@@ -19,7 +20,11 @@ public class CategoryPageZomato extends Page {
     @AndroidFindBy(id = "button")
     private WebElement btn_add;
 
-
+    @Override
+    public CategoryPageZomato waitForPageToLoad() {
+        org.testng.Assert.assertTrue(webInteraction.waitForElementToAppear(btn_dontSwitch));
+        return this;
+    }
 
     public CategoryPageZomato addFood() {
         mobileInteraction.waitForElementToAppearAndClick(btn_addItem.get(0));

@@ -1,7 +1,7 @@
 {
-  "platform": "Android",
+  "platform": "",
   "Automation_name": "UiAutomator2",
-  "url": "",
+  "url": "https://www.google.com/",
   "platform_version": "",
   "app_package": "io.appium.android.apis",
   "app_activity": ".ApiDemos",

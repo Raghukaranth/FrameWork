@@ -9,7 +9,7 @@ import org.openqa.selenium.support.PageFactory;
 import static base.BaseTest.appiumDriver;
 import static base.BaseTest.webDriver;
 
-public  class Page {
+public abstract class Page {
     ConfigProperty util = new ConfigProperty();
     protected WebInteraction webInteraction;
     protected MobileInteraction mobileInteraction;
@@ -24,5 +24,7 @@ public  class Page {
             PageFactory.initElements(webDriver, this);
             webInteraction = new WebInteraction(webDriver);
         }
+        this.waitForPageToLoad();
     }
+    public abstract <T extends Page> T waitForPageToLoad();
 }

@@ -18,6 +18,11 @@ public class HomePageGoogle extends Page {
     @FindBy(xpath = "//iframe[@name='app']")
     private WebElement frame_apps;
 
+    @Override
+    public HomePageGoogle waitForPageToLoad() {
+        Assert.assertTrue(webInteraction.waitForElementToAppear(btn_googleApps));
+        return this;
+    }
 
     public HomePageGoogle clickOnApps() {
         webInteraction.waitForElementToAppearAndClick(btn_googleApps);

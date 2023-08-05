@@ -16,8 +16,9 @@ public class  BrowserManager {
     public static WebDriver BrowserSetUp(String browserName) {
         WebDriver webDriver = null;
         if(browserName.equalsIgnoreCase("chrome")) {
-            WebDriverManager.chromedriver().setup();
-            webDriver = new ChromeDriver();
+            ChromeOptions options = new ChromeOptions();
+            options.addArguments("--remote-allow-origins=*");
+            webDriver = new ChromeDriver(options);
         }
         else {
             WebDriverManager.firefoxdriver().setup();

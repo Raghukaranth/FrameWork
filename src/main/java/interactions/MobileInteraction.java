@@ -5,6 +5,8 @@ import constant.Constants;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.PerformsTouchActions;
 import io.appium.java_client.TouchAction;
+import lombok.extern.slf4j.Slf4j;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -16,8 +18,9 @@ import java.util.concurrent.TimeUnit;
 
 import static io.appium.java_client.touch.WaitOptions.waitOptions;
 import static io.appium.java_client.touch.offset.PointOption.point;
+import static java.time.Duration.ofMillis;
 import static java.time.Duration.ofSeconds;
-
+@Slf4j
 public class MobileInteraction implements Constants {
 
     AppiumDriver appiumDriver;
@@ -91,6 +94,24 @@ public class MobileInteraction implements Constants {
                 .waitAction(waitOptions(ofSeconds(seconds)))
                 .release()
                 .perform();
+    }
+
+    public void swipe(int startX, int startY, int endX, int endY, int miliseconds) {
+        new TouchAction((PerformsTouchActions) appiumDriver)
+                .press(point(startX, startY))
+                .waitAction(waitOptions(ofMillis(miliseconds))).moveTo(point(endX, endY))
+                .release().perform();
+    }
+
+    public void swipeUp(int noOfSwipes, int milliSeconds) {
+        Dimension size = appiumDriver.manage().window().getSize();
+        int startY = (int) (size.height * 0.8);
+        int endY = (int) (size.height * 0.2);
+        int x = (int) (size.width * 0.5);
+        for (int i = 1; i <= noOfSwipes; i++) {
+            swipe(x, startY, x, endY, milliSeconds);
+            log.info("Swiping up with the coordinates : [" + x + ", " + startY + "] [" + x + ", " + endY + "]");
+        }
     }
 
     public void swipeUpGesture(int left,int top,int width, int height) {

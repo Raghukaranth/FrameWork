@@ -12,9 +12,15 @@ public class HomePageYouTube extends Page {
     @FindBy(xpath = "//div[@id='start']")
     private WebElement logo_YouTube;
 
-
+    @Override
+    public HomePageYouTube waitForPageToLoad() {
+        validateYouTube();
+        return this;
+    }
     public HomePageYouTube validateYouTube() {
         Assert.assertTrue(webInteraction.waitForElementToAppear(logo_YouTube));
         return this;
     }
+
+
 }

@@ -53,7 +53,6 @@ public class BaseTest {
         util.setData();
         if(ConfigProperty.PLATFORM.equalsIgnoreCase("Android")) {
                 appiumDriver = launchApp(appiumThread.get().getUrl(), Platform.ANDROID);
-                nakkanpage = new Page();
         }
         else {
             webDriver = BrowserManager.BrowserSetUp("chrome");
