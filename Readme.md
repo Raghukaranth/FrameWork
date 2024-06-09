@@ -1,6 +1,6 @@
 # **Framework**
 
-This is Automation Framework For web
+This is Automation Framework For web and mobile
 
 ## **Table Of Contents**
 
