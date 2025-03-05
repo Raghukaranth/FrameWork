@@ -24,11 +24,7 @@ public class JavaDevTest {
         driver = new AppiumDriver(new URL("http://127.0.0.1:4723/wd/hub"), caps);
     }
 
-    @Test
-    public void enterTheData() {
-        driver.findElement(By.id("idEdtName")).sendKeys("aa");
-        driver.findElement(By.id("idEdtJob")).sendKeys("aa");
-    }
+
     @AfterTest
     public void tearDown() {
         if (null != driver) {
