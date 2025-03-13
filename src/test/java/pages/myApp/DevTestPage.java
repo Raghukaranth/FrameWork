@@ -21,41 +21,12 @@ public class DevTestPage {
     }
 
 
-
-
-    public WebElement getNameTextBox() {
-        return NameTextBox;
-    }
-
-    public void setNameTextBox(WebElement nameTextBox) {
-        NameTextBox = nameTextBox;
-    }
-
-    public WebElement getJobTextBox() {
-        return JobTextBox;
-    }
-
-    public void setJobTextBox(WebElement jobTextBox) {
-        JobTextBox = jobTextBox;
-    }
-
-    public WebElement getPostBtn() {
-        return PostBtn;
-    }
-
-    public void setPostBtn(WebElement postBtn) {
-        PostBtn = postBtn;
-    }
-
-
-
-
     public void enterDataForName() {
-        NameTextBox.sendKeys("aa");
+        NameTextBox.sendKeys(DevData.NAME_TEXT_BOX);
     }
 
     public void enterDataForJob() {
-        JobTextBox.sendKeys("aa");
+        JobTextBox.sendKeys(DevData.JOB_TEXT_BOX);
     }
 
 }
