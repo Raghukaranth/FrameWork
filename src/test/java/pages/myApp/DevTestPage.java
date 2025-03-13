@@ -16,8 +16,8 @@ public class DevTestPage {
     @FindBy(id = "idBtnPost")
     private WebElement PostBtn;
 
-    public DevTestPage(AppiumDriver driver) {
-        PageFactory.initElements(driver, this);
+    public DevTestPage(AppiumDriver appiumDriver) {
+        PageFactory.initElements(appiumDriver, this);
     }
 
 

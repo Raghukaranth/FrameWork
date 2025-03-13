@@ -7,7 +7,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class BaseDevTest {
-    AppiumDriver driver;
+    AppiumDriver appiumDriver;
 
     @BeforeTest
     public void setUp() throws MalformedURLException {
@@ -19,14 +19,14 @@ public class BaseDevTest {
         caps.setCapability("appPackage", "com.example.androiddevjava");
         caps.setCapability("appActivity", ".GetDataSwitch");
 
-        driver = new AppiumDriver(new URL("http://127.0.0.1:4723/wd/hub"), caps);
+        appiumDriver = new AppiumDriver(new URL("http://127.0.0.1:4723/wd/hub"), caps);
     }
 
 
     @AfterTest
     public void tearDown() {
-        if (null != driver) {
-            driver.quit();
+        if (null != appiumDriver) {
+            appiumDriver.quit();
         }
     }
 }
