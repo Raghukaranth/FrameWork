@@ -1,10 +1,11 @@
-import org.openqa.selenium.By;
 import org.testng.annotations.Test;
+import pages.myApp.DevTestPage;
 
-public class DevTest extends JavaDevTest {
+public class DevTest extends BaseDevTest {
     @Test
     public void enterTheData() {
-        driver.findElement(By.id("idEdtName")).sendKeys("aa");
-        driver.findElement(By.id("idEdtJob")).sendKeys("aa");
+        DevTestPage devTestPage = new DevTestPage(driver);
+        devTestPage.enterDataForName();
+        devTestPage.enterDataForJob();
     }
 }
