@@ -6,8 +6,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import static base.BaseDevTest.appiumDriver;
-
 public class DevTestLoginPage {
     public MobileInteractions mobileInteractions;
 

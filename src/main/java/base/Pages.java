@@ -1,16 +1,16 @@
-package pages.myApp;
+package base;
 
 import interactions.MobileInteractions;
-import io.appium.java_client.AppiumDriver;
 import org.openqa.selenium.support.PageFactory;
 
-import static base.BaseDevTest.appiumDriver;
+import static base.AndroidBaseDevTest.appiumDriver;
 
-public class Pages {
-    MobileInteractions mobileInteractions;
+public abstract class Pages {
+    public MobileInteractions mobileInteractions;
 
     public Pages() {
         PageFactory.initElements(appiumDriver, this);
         mobileInteractions = new MobileInteractions(appiumDriver);
     }
+    public abstract <T extends Pages> T waitForPageToLoad();
 }

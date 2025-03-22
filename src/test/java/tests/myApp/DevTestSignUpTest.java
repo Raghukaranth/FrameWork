@@ -1,11 +1,10 @@
 package tests.myApp;
 
-import base.BaseDevTest;
+import base.AndroidBaseDevTest;
 import org.testng.annotations.Test;
 import pages.myApp.DevTestLoginPage;
-import pages.myApp.DevTestSIgnUpPage;
 
-public class DevTestSignUpTest extends BaseDevTest {
+public class DevTestSignUpTest extends AndroidBaseDevTest {
     @Test
     public void enterTextInNameTextBox() {
         DevTestLoginPage devTestLoginPage = new DevTestLoginPage(appiumDriver);

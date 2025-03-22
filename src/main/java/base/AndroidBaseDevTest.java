@@ -7,8 +7,11 @@ import org.testng.annotations.BeforeTest;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.concurrent.TimeUnit;
 
-public class BaseDevTest {
+import static interactions.Constants.TIMEOUT_LONG;
+
+public class AndroidBaseDevTest {
     public static AppiumDriver appiumDriver;
 
     @BeforeTest
@@ -19,8 +22,9 @@ public class BaseDevTest {
         caps.setCapability("platformVersion", "13");
         caps.setCapability("deviceName", "d6e1e45f");
         caps.setCapability("appPackage", "com.example.androiddevjava");
-            caps.setCapability("appActivity", ".LoginActivity");
+        caps.setCapability("appActivity", ".LoginActivity");
 
+        appiumDriver.manage().timeouts().implicitlyWait(TIMEOUT_LONG, TimeUnit.SECONDS);
         appiumDriver = new AppiumDriver(new URL("http://127.0.0.1:4723/wd/hub"), caps);
     }
 

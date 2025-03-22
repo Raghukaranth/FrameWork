@@ -1,10 +1,8 @@
 package pages.myApp;
 
-import interactions.MobileInteractions;
-import io.appium.java_client.AppiumDriver;
+import base.Pages;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 
 public class DevTestSIgnUpPage extends Pages {
 
@@ -17,7 +15,14 @@ public class DevTestSIgnUpPage extends Pages {
     @FindBy(xpath = "//*[contains(@text, ''Response Code)]")
     private WebElement responeCodeText;
 
+    @Override
+    public DevTestSIgnUpPage waitForPageToLoad() {
+        mobileInteractions.waitForElementToAppear(nameTextBox);
+        return this;
+    }
+
     public void enterNameInTextField(String name) {
         mobileInteractions.enterText(nameTextBox, name);
     }
+
 }

@@ -28,15 +28,12 @@ public class MobileInteractions implements Constants {
     public boolean waitForElementToAppearAndClick(WebElement element, String elemDetails, long timeOut) {
         boolean result;
         try {
-            appiumDriver.manage().timeouts().implicitlyWait(timeOut, TimeUnit.SECONDS);
             WebDriverWait wait = new WebDriverWait(appiumDriver, TIMEOUT_LONG);
             wait.until(ExpectedConditions.visibilityOf(element));
             element.click();
             result = true;
         } catch (Exception e) {
             result = false;
-        } finally {
-            appiumDriver.manage().timeouts().implicitlyWait(TIMEOUT_LONG, TimeUnit.SECONDS);
         }
         return result;
     }
@@ -44,5 +41,26 @@ public class MobileInteractions implements Constants {
     public void enterText(WebElement element, String value) {
         waitForElementToAppearAndClick(element);
         element.sendKeys(value);
+    }
+
+    public boolean waitForElementToAppear(WebElement element, String elemDetails, long timeOutInSeconds) {
+        boolean result;
+
+        try {
+            WebDriverWait wait = new WebDriverWait(appiumDriver, TIMEOUT_LONG);
+            wait.until(ExpectedConditions.visibilityOf(element));
+            result = true;
+        } catch (Exception e) {
+            return false;
+        }
+        return false;
+    }
+
+    public boolean waitForElementToAppear(WebElement element) {
+        return waitForElementToAppear(element, "Element details not provided in method");
+    }
+
+    public boolean waitForElementToAppear(WebElement element, String elementDetails) {
+        return waitForElementToAppear(element, elementDetails, 10);
     }
 }
