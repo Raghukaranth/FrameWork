@@ -10,6 +10,6 @@ public class DevTestSignUpTest extends AndroidBaseDevTest {
         DevTestLoginPage devTestLoginPage = new DevTestLoginPage(appiumDriver);
 
         devTestLoginPage.clickOnSignUpBtn()
-                .enterNameInTextField("hi");
+                .enterNameInTextField("Raghavendra");
     }
 }

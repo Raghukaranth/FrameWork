@@ -19,7 +19,7 @@ public class APITest extends BaseAPIDevTest {
 
     @Test
     public void testGetResponse() {
-        Response respose = RestUtils.getRequest("/loginUser/login/" + 2);
+        Response respose = RestUtils.getRequest("/loginUser/login/" + 1);
         respose.then().statusCode(200);
     }
 }

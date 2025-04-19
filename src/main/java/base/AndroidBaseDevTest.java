@@ -20,12 +20,12 @@ public class AndroidBaseDevTest {
         caps.setCapability("automationName", "UiAutomator2");
         caps.setCapability("platformName", "Android");
         caps.setCapability("platformVersion", "13");
-        caps.setCapability("deviceName", "d6e1e45f");
         caps.setCapability("appPackage", "com.example.androiddevjava");
-        caps.setCapability("appActivity", ".LoginActivity");
+        caps.setCapability("appActivity", ".login.LoginActivity");
 
-        appiumDriver.manage().timeouts().implicitlyWait(TIMEOUT_LONG, TimeUnit.SECONDS);
         appiumDriver = new AppiumDriver(new URL("http://127.0.0.1:4723/wd/hub"), caps);
+        appiumDriver.manage().timeouts().implicitlyWait(TIMEOUT_LONG, TimeUnit.SECONDS);
+
     }
 
 

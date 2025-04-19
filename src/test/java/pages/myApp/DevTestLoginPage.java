@@ -27,4 +27,11 @@ public class DevTestLoginPage {
         mobileInteractions.waitForElementToAppearAndClick(idSignUpBtn);
         return new DevTestSIgnUpPage();
     }
+
+    public DevTestDiscoveryPage enterIdAndClickOnLoginButton() {
+        mobileInteractions.enterText(idTextBox, "1");
+        mobileInteractions.waitForElementToAppearAndClick(idLoginBtn);
+        return new DevTestDiscoveryPage();
+    }
+
 }
