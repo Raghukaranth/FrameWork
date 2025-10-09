@@ -6,6 +6,6 @@ import org.testng.annotations.BeforeClass;
 public class BaseAPIDevTest {
     @BeforeClass
     public void setup() {
-        RestAssured.baseURI = "http://192.168.215.108:9090";
+        RestAssured.baseURI = "http://localhost:9090";
     }
 }

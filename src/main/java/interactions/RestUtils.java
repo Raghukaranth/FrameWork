@@ -1,10 +1,13 @@
 package interactions;
 
+import io.restassured.RestAssured;
+import io.restassured.http.ContentType;
 import io.restassured.response.Response;
+import io.restassured.specification.RequestSpecification;
 
 import static io.restassured.RestAssured.*;
 
-public class RestUtils {
+public class    RestUtils {
     public static Response getRequest(String endpoint) {
         return given()
                 .when()
@@ -15,11 +18,14 @@ public class RestUtils {
 
     public static Response postRequest(String endpoint, Object body) {
         return given()
-                .header("Content-Type", "application/json")
+                .contentType(ContentType.JSON)
                 .body(body)
-                .when()
-                .post(endpoint)
-                .then()
-                .extract().response();
+                .post(endpoint);
+    }
+
+    public static Response deleteRequest(String endpoint, Object id) {
+        return given()
+                .pathParams("id", id)
+                .delete(endpoint);
     }
 }
