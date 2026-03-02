@@ -10,6 +10,7 @@ import org.testng.annotations.BeforeSuite;
 public class BaseTest {
     public static WebDriver webDriver;
     ConfigProperty configProperty;
+    public Page nakkanPage;
 
     @BeforeSuite
     public void BeforeSuite() {
