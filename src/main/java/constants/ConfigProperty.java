@@ -12,12 +12,13 @@ public class ConfigProperty {
     public static String URL;
     public static String PLATFORM;
     public static String BROWSER;
+    public static String APPIUM_URL;
 
     private static Properties properties = new Properties();
     public static Map<String, String> configFileMap = new HashMap<>();
     private static ConfigProperty instance;
 
-    private ConfigProperty(String configFile) {
+    public ConfigProperty(String configFile) {
         try (FileInputStream inputStream = new FileInputStream(configFile)) {
             properties.load(inputStream);
             loadToMap();  // Copy to map
@@ -26,6 +27,7 @@ public class ConfigProperty {
             throw new RuntimeException("Failed to load " + configFile, e);
         }
     }
+    public ConfigProperty() {}
 
     private void loadToMap() {
         properties.forEach((key, value) ->
@@ -36,6 +38,7 @@ public class ConfigProperty {
         URL = getData("url");
         PLATFORM = getData("platform");
         BROWSER = getData("browser");
+        APPIUM_URL = getData("appium_url");
     }
 
     public String getData(String key) {
