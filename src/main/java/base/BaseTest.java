@@ -22,14 +22,13 @@ public class BaseTest {
 
     @BeforeSuite
     public void BeforeSuite() throws MalformedURLException {
-        if(ConfigProperty.PLATFORM.equals("web")) {
+        if("web".equals(ConfigProperty.PLATFORM)) {
             ConfigProperty.getInstance();
             WebDriverManager.chromedriver().setup();
             webDriver = new ChromeDriver();
             webDriver.get(ConfigProperty.URL);
             webDriver.manage().window().maximize();
-        } else if (ConfigProperty.PLATFORM.equals("mobile")) {
-            ConfigProperty.getInstance();
+        } else if("mobile".equals(ConfigProperty.PLATFORM)) {
             setCapsAndStartServer();
         }
     }
@@ -57,4 +56,6 @@ public class BaseTest {
         appiumDriver = new AppiumDriver(new URL(ConfigProperty.APPIUM_URL), capabilities);
         appiumDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
+
+
 }

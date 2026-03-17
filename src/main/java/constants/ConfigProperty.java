@@ -9,14 +9,23 @@ import java.util.Properties;
 import static utils.FilePath.CONFIG_PROPS;
 
 public class ConfigProperty {
-    public static String URL;
-    public static String PLATFORM;
-    public static String BROWSER;
-    public static String APPIUM_URL;
-
     private static Properties properties = new Properties();
     public static Map<String, String> configFileMap = new HashMap<>();
     private static ConfigProperty instance;
+
+    public static String URL;
+    public static String PLATFORM;
+    public static String  BROWSER;
+    public static String APPIUM_URL;
+
+    static {
+        try {
+            new ConfigProperty(CONFIG_PROPS);  // Auto-loads on class load
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to load config", e);
+        }
+    }
+
 
     public ConfigProperty(String configFile) {
         try (FileInputStream inputStream = new FileInputStream(configFile)) {
