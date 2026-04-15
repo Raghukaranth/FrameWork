@@ -17,6 +17,7 @@ public class ConfigProperty {
     public static String PLATFORM;
     public static String  BROWSER;
     public static String APPIUM_URL;
+    public static String PLATFORM_NAME;
 
     static {
         try {
@@ -48,6 +49,7 @@ public class ConfigProperty {
         PLATFORM = getData("platform");
         BROWSER = getData("browser");
         APPIUM_URL = getData("appium_url");
+        PLATFORM_NAME = getData("platform_name");
     }
 
     public String getData(String key) {
