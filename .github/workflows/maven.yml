@@ -28,8 +28,10 @@ jobs:
         run: mvn -B package -DskipTests --file pom.xml
 
       # Triggers your TestNG tests targeting the sauceDemo class in headless mode
+      # Triggers the structured TestNG suite file runner context
       - name: Run TestNG Automation Tests
-        run: mvn test -Dtest=sauceDemo -Dheadless=true
+        run: mvn test -DsuiteXmlFile=src/test/resources/testng.xml -Dheadless=true
+
 
       # Collects reports and screenshots even if a test case fails
       - name: Archive Test Reports Artifacts
