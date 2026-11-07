@@ -1,6 +1,5 @@
 package interactions;
 
-import base.Page;
 import constants.ConstFile;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.ElementClickInterceptedException;
@@ -23,7 +22,7 @@ public class WebInteractions {
     }
 
     public void waitForElementToBeDisplayed(WebElement element) {
-        Assert.assertTrue(wait.until(ExpectedConditions.visibilityOf(element)).isDisplayed(), "element is displayed");
+        Assert.assertTrue(wait.until(ExpectedConditions.visibilityOf(element)).isDisplayed(), "Element is displayed");
     }
 
     public void waitForElementToBeClicked(WebElement element) {
@@ -31,9 +30,9 @@ public class WebInteractions {
             wait.until(ExpectedConditions.visibilityOf(element));
             wait.until(ExpectedConditions.elementToBeClickable(element));
             element.click();
-            log.info("Clicked on Element");
+            log.info("Successfully clicked on target element");
         } catch (Exception e) {
-            throw new ElementClickInterceptedException("Element was not clickable",e);
+            throw new ElementClickInterceptedException("Element was not clickable inside designated window frame context", e);
         }
     }
 }

@@ -13,14 +13,13 @@ public abstract class Page {
     protected WebInteractions webInteractions;
 
     public Page() {
-        // Safe now because WebInteractions no longer extends Page!
         this.driver = BaseClass.getDriver();
         this.webInteractions = new WebInteractions(driver);
 
         String waitTime = ConfigReader.getProperty("implicit.wait");
         int seconds = (waitTime != null) ? Integer.parseInt(waitTime) : 10;
 
-        // Initializes elements for Web and Appium contexts safely
+        // Securely initialises @FindBy wrappers across desktop and mobile layers
         PageFactory.initElements(new AppiumFieldDecorator(driver, Duration.ofSeconds(seconds)), this);
     }
 }
