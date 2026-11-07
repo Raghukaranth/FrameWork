@@ -23,17 +23,15 @@ jobs:
           distribution: 'temurin'
           cache: maven
 
-      # Compiles project and packages classes without running tests early
+      # Compiles the project structure without triggering the tests prematurely
       - name: Build with Maven
         run: mvn -B package -DskipTests --file pom.xml
 
-      # Triggers your TestNG tests targeting the sauceDemo class in headless mode
-      # Triggers the structured TestNG suite file runner context
+      # Triggers your structured TestNG XML suite runner in cloud headless mode
       - name: Run TestNG Automation Tests
         run: mvn test -DsuiteXmlFile=src/test/resources/testng.xml -Dheadless=true
 
-
-      # Collects reports and screenshots even if a test case fails
+      # Collects execution reports even if assertions or test cases fail
       - name: Archive Test Reports Artifacts
         if: always()
         uses: actions/upload-artifact@v4
