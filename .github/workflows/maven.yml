@@ -29,17 +29,19 @@ jobs:
 
       # Triggers your structured TestNG XML suite runner in cloud headless mode
       - name: Run TestNG Automation Tests
-        run: mvn test -DsuiteXmlFile=src/test/resources/testng.xml -Dheadless=true
+        run: mvn -B test -DsuiteXmlFile=src/test/resources/testng.xml -Dsurefire.suiteXmlFiles=src/test/resources/testng.xml -Dheadless=true
 
-      # Collects execution reports even if assertions or test cases fail
+      # Collects execution reports and ExtentReport even if assertions or test cases fail
       - name: Archive Test Reports Artifacts
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: test-automation-reports
           path: |
+            target/ExtentReport.html
             target/surefire-reports/
             test-output/
+          if-no-files-found: warn
 
       - name: Update dependency graph
         uses: advanced-security/maven-dependency-submission-action@571e99aab1055c2e71a1e2309b9691de18d6b7d6
