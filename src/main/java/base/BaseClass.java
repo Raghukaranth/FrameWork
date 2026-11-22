@@ -3,12 +3,14 @@ package base;
 import config.ConfigReader;
 import config.DriverFactory;
 import io.restassured.RestAssured;
+import listeners.ExtentTestListener;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.Listeners;
 
 import java.time.Duration;
-
+@Listeners(ExtentTestListener.class)
 public class BaseClass {
     public static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
 
