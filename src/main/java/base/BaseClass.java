@@ -2,23 +2,34 @@ package base;
 
 import config.ConfigReader;
 import config.DriverFactory;
-import io.appium.java_client.AppiumDriver;
+import io.restassured.RestAssured;
+import listeners.ExtentTestListener;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterSuite;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.Listeners;
 
 import java.time.Duration;
-
+@Listeners(ExtentTestListener.class)
 public class BaseClass {
     public static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
 
-    @BeforeSuite
+    @BeforeSuite(alwaysRun = true)
     public void BeforeSuite() {
         String platform = ConfigReader.getProperty("platform");
         String target = ConfigReader.getProperty("target");
         String appiumUrl = ConfigReader.getProperty("appium.server.url");
         String appPath = ConfigReader.getProperty("app.path");
+
+        String apiBaseUrl = ConfigReader.getProperty("api.base.url");
+        if (apiBaseUrl != null && !apiBaseUrl.isEmpty()) {
+            RestAssured.baseURI = apiBaseUrl;
+        }
+
+        // Skip WebDriver initialization if running API-only tests
+        if (platform != null && platform.equalsIgnoreCase("api")) {
+            return;
+        }
 
         WebDriver rawDriver = DriverFactory.DriverInstance(platform, target, appiumUrl);
 
@@ -26,6 +37,7 @@ public class BaseClass {
         int seconds = (waitTime != null) ? Integer.parseInt(waitTime) : 10;
         rawDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(seconds));
         driver.set(rawDriver);
+
         if (platform != null && platform.equalsIgnoreCase("web")) {
             getDriver().manage().window().maximize();
 
@@ -42,7 +54,7 @@ public class BaseClass {
         return driver.get();
     }
 
-    @AfterSuite
+    @AfterSuite(alwaysRun = true)
     public void AfterSuite() {
         if (getDriver() != null) {
             getDriver().quit();

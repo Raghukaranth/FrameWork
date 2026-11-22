@@ -3,7 +3,6 @@ package config;
 import constants.ConstFile;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.util.Properties;
 
 public class ConfigReader {
@@ -21,6 +20,10 @@ public class ConfigReader {
     }
 
     public static String getProperty(String key) {
+        String systemValue = System.getProperty(key);
+        if (systemValue != null && !systemValue.trim().isEmpty()) {
+            return systemValue.trim();
+        }
         return properties.getProperty(key);
     }
 }

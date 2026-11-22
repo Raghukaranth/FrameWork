@@ -5,7 +5,7 @@ import org.testng.annotations.Test;
 import pages.LoginPage;
 
 public class sauceDemo extends BaseClass {
-    @Test
+    @Test(groups = "web")
     public void clickOnLoginButtonInApp() {
         LoginPage loginPage = new LoginPage();
         loginPage.clickOnLoginAndEnterEmailAndPassword();
