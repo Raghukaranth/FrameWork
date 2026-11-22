@@ -2,10 +2,9 @@ package base;
 
 import config.ConfigReader;
 import config.DriverFactory;
-import io.appium.java_client.AppiumDriver;
+import io.restassured.RestAssured;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterSuite;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 
 import java.time.Duration;
@@ -19,6 +18,17 @@ public class BaseClass {
         String target = ConfigReader.getProperty("target");
         String appiumUrl = ConfigReader.getProperty("appium.server.url");
         String appPath = ConfigReader.getProperty("app.path");
+
+        String apiBaseUrl = ConfigReader.getProperty("api.base.url");
+        if (apiBaseUrl != null && !apiBaseUrl.isEmpty()) {
+            RestAssured.baseURI = apiBaseUrl;
+        }
+
+        // 2. Skip WebDriver initialization if running API-only tests
+        if (platform != null && platform.equalsIgnoreCase("api")) {
+            return;
+        }
+
 
         WebDriver rawDriver = DriverFactory.DriverInstance(platform, target, appiumUrl);
 
