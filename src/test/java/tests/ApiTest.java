@@ -10,7 +10,7 @@ public class ApiTest extends BaseClass {
 
     ApiInteractions api = new ApiInteractions();
 
-    @Test
+    @Test(groups = "api")
     public void verifyGetUsers() {
         Response response = api.get("/api/users?page=2");
         Assert.assertEquals(response.getStatusCode(), 200);

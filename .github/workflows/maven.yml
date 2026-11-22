@@ -7,6 +7,18 @@ on:
       - 'reports/**'
   pull_request:
     branches: [ "master" ]
+  workflow_dispatch:
+    inputs:
+      platform:
+        description: 'Select Platform to Run'
+        required: true
+        default: 'api'
+        type: choice
+        options:
+          - api
+          - web
+          - mobile
+          - all
 
 jobs:
   build:
@@ -31,7 +43,14 @@ jobs:
         run: mvn -B package -DskipTests --file pom.xml
 
       - name: Run TestNG Automation Tests
-        run: mvn -B test -DsuiteXmlFile=src/test/resources/testng.xml -Dsurefire.suiteXmlFiles=src/test/resources/testng.xml -Dheadless=true
+        env:
+          SELECTED_PLATFORM: ${{ github.event.inputs.platform || 'api' }}
+        run: |
+          if [ "$SELECTED_PLATFORM" = "all" ]; then
+            mvn -B test -Dplatform=web -Dheadless=true
+          else
+            mvn -B test -Dplatform=$SELECTED_PLATFORM -Dgroups=$SELECTED_PLATFORM -Dheadless=true
+          fi
 
       - name: Commit ExtentReport to Branch
         if: always() && github.event_name == 'push'

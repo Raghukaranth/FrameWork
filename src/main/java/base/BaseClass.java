@@ -12,7 +12,7 @@ import java.time.Duration;
 public class BaseClass {
     public static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
 
-    @BeforeSuite
+    @BeforeSuite(alwaysRun = true)
     public void BeforeSuite() {
         String platform = ConfigReader.getProperty("platform");
         String target = ConfigReader.getProperty("target");
@@ -24,11 +24,10 @@ public class BaseClass {
             RestAssured.baseURI = apiBaseUrl;
         }
 
-        // 2. Skip WebDriver initialization if running API-only tests
+        // Skip WebDriver initialization if running API-only tests
         if (platform != null && platform.equalsIgnoreCase("api")) {
             return;
         }
-
 
         WebDriver rawDriver = DriverFactory.DriverInstance(platform, target, appiumUrl);
 
@@ -36,6 +35,7 @@ public class BaseClass {
         int seconds = (waitTime != null) ? Integer.parseInt(waitTime) : 10;
         rawDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(seconds));
         driver.set(rawDriver);
+
         if (platform != null && platform.equalsIgnoreCase("web")) {
             getDriver().manage().window().maximize();
 
@@ -52,7 +52,7 @@ public class BaseClass {
         return driver.get();
     }
 
-    @AfterSuite
+    @AfterSuite(alwaysRun = true)
     public void AfterSuite() {
         if (getDriver() != null) {
             getDriver().quit();
