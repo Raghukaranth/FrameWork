@@ -6,8 +6,8 @@
     </listeners>
 
     <test name="SauceDemo Functional Tests">
-        <classes>
-            <class name="tests.sauceDemo"/>
-        </classes>
+        <packages>
+            <package name="tests"/>
+        </packages>
     </test>
 </suite>
