@@ -2,7 +2,9 @@ name: Java CI with Maven
 
 on:
   push:
-    branches: [ "master" ]
+    branches: [ "**" ]
+    paths-ignore:
+      - 'reports/**'
   pull_request:
     branches: [ "master" ]
 
@@ -15,6 +17,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref || github.ref_name }}
 
       - name: Set up JDK 21
         uses: actions/setup-java@v4
@@ -23,15 +27,25 @@ jobs:
           distribution: 'temurin'
           cache: maven
 
-      # Compiles the project structure without triggering the tests prematurely
       - name: Build with Maven
         run: mvn -B package -DskipTests --file pom.xml
 
-      # Triggers your structured TestNG XML suite runner in cloud headless mode
       - name: Run TestNG Automation Tests
         run: mvn -B test -DsuiteXmlFile=src/test/resources/testng.xml -Dsurefire.suiteXmlFiles=src/test/resources/testng.xml -Dheadless=true
 
-      # Collects execution reports and ExtentReport even if assertions or test cases fail
+      - name: Commit ExtentReport to Branch
+        if: always()
+        run: |
+          if [ -f target/ExtentReport.html ]; then
+            mkdir -p reports
+            cp target/ExtentReport.html reports/ExtentReport.html
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add -f reports/ExtentReport.html
+            git commit -m "chore: update ExtentReport for ${GITHUB_REF_NAME} [skip ci]" || true
+            git push origin HEAD:${GITHUB_REF_NAME}
+          fi
+
       - name: Archive Test Reports Artifacts
         if: always()
         uses: actions/upload-artifact@v4
