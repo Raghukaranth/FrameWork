@@ -12,13 +12,21 @@ on:
       platform:
         description: 'Select Platform to Run'
         required: true
-        default: 'api'
+        default: 'web'
         type: choice
         options:
-          - api
           - web
+          - api
+          - web,api
           - mobile
-          - all
+      mobile_target:
+        description: 'Mobile OS (used only when platform = mobile)'
+        required: false
+        default: 'android'
+        type: choice
+        options:
+          - android
+          - ios
 
 jobs:
   build:
@@ -42,12 +50,24 @@ jobs:
       - name: Build with Maven
         run: mvn -B package -DskipTests --file pom.xml
 
+      # Starts local Appium server only when 'mobile' is selected
+      - name: Setup & Start Appium Server (Mobile Only)
+        if: ${{ github.event.inputs.platform == 'mobile' }}
+        run: |
+          npm install -g appium
+          appium driver install uiautomator2
+          appium --base-path /wd/hub &
+          sleep 5
+
       - name: Run TestNG Automation Tests
         env:
-          SELECTED_PLATFORM: ${{ github.event.inputs.platform || 'api' }}
+          SELECTED_PLATFORM: ${{ github.event.inputs.platform || 'web' }}
+          MOBILE_TARGET: ${{ github.event.inputs.mobile_target || 'android' }}
         run: |
-          if [ "$SELECTED_PLATFORM" = "all" ]; then
-            mvn -B test -Dplatform=web -Dheadless=true
+          if [ "$SELECTED_PLATFORM" = "web,api" ]; then
+            mvn -B test -Dplatform=web -Dgroups=web,api -Dheadless=true
+          elif [ "$SELECTED_PLATFORM" = "mobile" ]; then
+            mvn -B test -Dplatform=mobile -Dtarget=$MOBILE_TARGET -Dgroups=mobile
           else
             mvn -B test -Dplatform=$SELECTED_PLATFORM -Dgroups=$SELECTED_PLATFORM -Dheadless=true
           fi
@@ -59,7 +79,7 @@ jobs:
             mkdir -p reports
             cp target/ExtentReport.html reports/ExtentReport.html
             git config user.name "github-actions[bot]"
-            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git config user.email "41898282+github-actions[bot]@://github.com"
             git add -f reports/ExtentReport.html
             if ! git diff --cached --quiet; then
               git commit -m "chore: update ExtentReport for ${GITHUB_REF_NAME} [skip ci]"
